@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from final_project.models import Item
+from django_fp.models import Item
 
 class ItemForm(ModelForm):
     class Meta:

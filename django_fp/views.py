@@ -40,7 +40,7 @@ def actors(request):
 def detail(request, number):
     return render(request, 'django_fp/detail.html', {'number': number})
 
-def django_fp(request):
+def django_fp_new(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
 

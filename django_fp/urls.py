@@ -17,6 +17,6 @@ urlpatterns = [
     path('<int:number>/', views.detail, name='detail'),
 
     # http://127.0.0.1:[PORT]/final_project/new
-    path('new', views.final_project_new, name='new'),
+    path('new', views.django_fp_new, name='new'),
 ]
 
