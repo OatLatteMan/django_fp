@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 </head>
 <body>
-    {% include 'final_project/includes/nav.html' %}
+    {% include 'django_fp/includes/nav.html' %}
     <section class="section container" style="max-width: 640px;">
         <h1 class="title">Create a new Film or Serial</h1>
-        <form method="POST" action="{% url 'final_project:new' %}">
+        <form method="POST" action="{% url 'django_fp:new' %}">
           {% csrf_token %}
 
           {% load crispy_forms_tags %}
@@ -18,7 +18,7 @@
 
           <div class="buttons">
               <button type="submit" class="button is-warning">Add...</button>
-              <a href="{% url 'final_project:films' %}" class="button is-warning is-light">Cancel</a>
+              <a href="{% url 'django_fp:films' %}" class="button is-warning is-light">Cancel</a>
 
           </div>
         </form>
