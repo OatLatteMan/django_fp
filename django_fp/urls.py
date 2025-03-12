@@ -1,7 +1,7 @@
 from django.urls import path
-from final_project import views
+from django_fp import views
 
-app_name = 'final_project'
+app_name = 'django_fp'
 
 urlpatterns = [
     # http://127.0.0.1:[PORT]/final_project

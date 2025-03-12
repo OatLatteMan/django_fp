@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from final_project.models import ItemType, Genre, Item, Review
-from final_project.forms import ItemForm
+from django_fp.models import ItemType, Genre, Item, Review
+from django_fp.forms import ItemForm
 
 """
 Tabs:
@@ -29,26 +29,26 @@ Questions to ask:
 
 
 def home(request):
-    return render(request, 'final_project/home.html')
+    return render(request, 'django_fp/home.html')
 
 def films_serials(request):
-    return render(request, 'final_project/films_serials.html')
+    return render(request, 'django_fp/films_serials.html')
 
 def actors(request):
-    return render(request, 'final_project/actors.html')
+    return render(request, 'django_fp/actors.html')
 
 def detail(request, number):
-    return render(request, 'final_project/detail.html', {'number': number})
+    return render(request, 'django_fp/detail.html', {'number': number})
 
-def final_project_new(request):
+def django_fp(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
 
         if form.is_valid():
             item = form.save(commit=False)
             item.save()
-            return redirect('/final_project/films')
+            return redirect('/django_fp/films')
     else:
         form = ItemForm()
 
-    return render(request, 'final_project/new.html', {'form': form})
+    return render(request, 'django_fp/new.html', {'form': form})
