@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.shortcuts import reverse
 
 User = get_user_model()
 
@@ -18,6 +19,7 @@ class Item(models.Model):
     desc = models.CharField(max_length=200)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
+    image = models.ImageField(blank=True, null=True, upload_to='storage/')
 
     def __str__(self):
         return self.name

@@ -1,3 +1,5 @@
 from django.contrib import admin
+from django_fp import models
 
-# Register your models here.
+admin.site.register(models.Item)
+
