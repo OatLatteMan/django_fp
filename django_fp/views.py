@@ -21,12 +21,6 @@ Serials:
     - The Witcher
 """
 
-"""
-Questions to ask:
-    - Why charfields from models are not showing up? Despite seeming I've
-        set everything up correctly
-"""
-
 
 def home(request):
     return render(request, 'django_fp/home.html')
