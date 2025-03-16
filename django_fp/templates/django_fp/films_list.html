@@ -1,0 +1,34 @@
+{% extends "django_fp/_base.html" %}
+{% block django_fp_title %}Films and serials{% endblock  %}
+{% block django_fp_desc %}Films and serials of django_fp app{% endblock  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films and Serials</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body>
+    {% include 'django_fp/includes/nav.html' %}
+    <main class="container">
+        <h1>Films and Serials</h1>
+    </main>
+    <h1>Films</h1>
+
+    <ul class="list">
+        {% for films in object_list %}
+            <li>
+                <a href="{{ films.get_absolute_url }}">
+                    {% if films.image %}
+                    <img src="{{ films.image.url }}" alt="" loading='lazy'>
+                    {% else %}
+                    <img src="https://picsum.photos/200?{{ films.id }}" alt="" loading='lazy'>
+                    {% endif %}
+                    <h2>{{ films.name }} - {{ films.desc }}</h2>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
