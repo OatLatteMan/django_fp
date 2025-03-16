@@ -8,7 +8,10 @@ urlpatterns = [
     path('', views.home, name='home'),
 
     # http://127.0.0.1:[PORT]/final_project/films
-    path('films/', views.list, name='films'),
+    # path('films/', views.list, name='films'),
+
+    # http://127.0.0.1:[PORT]/final_project/films
+    path('films/', views.ItemList.as_view(), name='films'),
 
     # http://127.0.0.1:[PORT]/final_project/actors
     path('actors/', views.actors, name='actors'),

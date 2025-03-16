@@ -1,7 +1,27 @@
 {% extends "django_fp/_base.html" %}
 {% block django_fp_title %}Films and serials{% endblock  %}
 {% block django_fp_desc %}Films and serials of django_fp app{% endblock  %}
-<!DOCTYPE html>
+
+{% block django_fp_base %}
+{% include 'django_fp/includes/nav.html' %}
+
+    <h1>Films and serials</h1>
+
+    <ul class="list">
+        {% for films in object_list %}
+            <li>
+                <a href="{{ films.get_absolute_url }}">
+                    {% if films.image %}
+                    <img src="{{ films.image.url }}" alt="" loading='lazy'>
+                    {% endif %}
+                    <h2>{{ films.name }}</h2>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock  %}
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,4 +51,4 @@
         {% endfor %}
     </ul>
 </body>
-</html>
+</html> {% endcomment %}
