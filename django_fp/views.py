@@ -53,7 +53,7 @@ def actors(request):
     return render(request, 'django_fp/actors.html')
 
 def detail(request, number):
-    return render(request, 'django_fp/detail.html', {'number': number})
+    return render(request, 'django_fp/item_detail.html', {'number': number})
 
 def django_fp_new(request):
     if request.method == 'POST':

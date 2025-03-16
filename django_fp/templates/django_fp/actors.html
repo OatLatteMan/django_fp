@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-</head>
-<body>
-    {% include 'django_fp/includes/nav.html' %}
-    <main class="container">
-        <h1>Actors</h1>
-    </main>
-</body>
-</html>
+{% extends "django_fp/_base.html" %}
+{% block django_fp_title %}Actors{% endblock  %}
+{% block django_fp_desc %}Actors of django_fp app{% endblock  %}
+
+{% block django_fp_base %}
+{% include 'django_fp/includes/nav.html' %}
+    <h2>Actors here</h2>
+{% endblock  %}
+
