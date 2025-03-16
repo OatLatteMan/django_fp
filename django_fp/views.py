@@ -39,18 +39,18 @@ class ItemList(ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 
-    paginate_by = 10
+    # paginate_by = 10
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        paginator = context['paginator']
-        page_obj = context['page_obj']
-        context['paginator_range'] = paginator.get_elided_page_range(
-            page_obj.number,
-            on_ends=1,
-            on_each_side=1
-        )
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     paginator = context['paginator']
+    #     page_obj = context['page_obj']
+    #     context['paginator_range'] = paginator.get_elided_page_range(
+    #         page_obj.number,
+    #         on_ends=1,
+    #         on_each_side=1
+    #     )
+    #     return context
 
 def actors(request):
     return render(request, 'django_fp/actors.html')
