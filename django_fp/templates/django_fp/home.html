@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee McLover</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
-</head>
-<body>
-    {% include 'django_fp/includes/nav.html' %}
-    <section class="section is-large">
-        <h1 class="title">Welcome here!</h1>
-        <h2 class="subtitle">
-          Let me introduce you today into my small pre-selected choice of films and serials for you to spend your day with!
-        </h2>
-      </section>
-</body>
-</html>
+{% extends "django_fp/_base.html" %}
+{% block django_fp_title %}Home{% endblock  %}
+{% block django_fp_desc %}Home page of django_fp app{% endblock  %}
+
+{% block django_fp_base %}
+{% include 'django_fp/includes/nav.html' %}
+    <h1 class="title">Welcome here!</h1>
+    <h3 class="subtitle">
+        Let me introduce you today into my small pre-selected choice of films and serials for you to spend your day with!
+    </h3>
+{% endblock  %}
+
