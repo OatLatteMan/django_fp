@@ -28,9 +28,12 @@ Serials:
 def home(request):
     return render(request, 'django_fp/home.html')
 
-def list(request):
-    films = models.Item.objects.all()
-    return render(request, 'django_fp/films_list.html', {'films': films})
+# def list(request):
+#     films = models.Item.objects.all()
+#     return render(request, 'django_fp/films_list.html', {'films': films})
+
+class ItemDetail(DetailView):
+    model = models.Item
 
 class ItemList(ListView):
     model = models.Item
@@ -52,8 +55,9 @@ class ItemList(ListView):
 def actors(request):
     return render(request, 'django_fp/actors.html')
 
-def detail(request, number):
-    return render(request, 'django_fp/item_detail.html', {'number': number})
+# def detail(request, pk):
+#     film = get_object_or_404(models.Item, pk=pk)
+#     return render(request, 'django_fp/item_detail.html', {'film': film})
 
 def django_fp_new(request):
     if request.method == 'POST':
