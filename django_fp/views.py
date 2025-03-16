@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from django_fp import models
 from django_fp.models import ItemType, Genre, Item, Review
 from django_fp.forms import ItemForm
-from django.views import generic
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 """
 Tabs:
@@ -31,7 +32,7 @@ def list(request):
     films = models.Item.objects.all()
     return render(request, 'django_fp/films_list.html', {'films': films})
 
-class ItemList(generic.ListView):
+class ItemList(ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 

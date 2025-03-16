@@ -19,7 +19,7 @@ class Item(models.Model):
     desc = models.CharField(max_length=200)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
-    image = models.ImageField(blank=True, null=True, upload_to='storage/')
+    image = models.ImageField(blank=True, null=True, upload_to='item/')
 
     def __str__(self):
         return self.name
