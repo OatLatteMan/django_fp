@@ -1,4 +1,8 @@
 {% extends "django_fp/_base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
+{% endblock  %}
 {% block django_fp_title %}{{ django_fp.name }}{% endblock %}
 {% block django_fp_desc %}{% endblock  %}
 
