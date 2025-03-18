@@ -9,6 +9,9 @@ class ItemType(models.IntegerChoices):
     TV_SHOW = 2, 'Seriál'
     OTHER = 3, 'Ostatní'
 
+    def __str__(self):
+        return self.MOVIE, self.TV_SHOW, self.OTHER
+
 class Genre(models.IntegerChoices):
     SCIFI = 1, 'Sci-fi'
     DRAMA = 2, 'Drama'
