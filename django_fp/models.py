@@ -19,7 +19,8 @@ class Genre(models.IntegerChoices):
 
 class Item(models.Model):
     name = models.CharField(max_length=100)
-    desc = models.CharField(max_length=200)
+    title = models.CharField(max_length=200)
+    desc = models.CharField(max_length=1000)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
     image = models.ImageField(blank=True, null=True, upload_to='item/')
