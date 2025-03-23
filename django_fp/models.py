@@ -18,8 +18,8 @@ class Genre(models.IntegerChoices):
     COMERY = 3, 'Komedie'
 
 class Item(models.Model):
-    name = models.CharField(max_length=100)
-    title = models.CharField(max_length=200)
+    name = models.CharField(max_length=40)
+    title = models.CharField(max_length=50)
     desc = models.TextField(max_length=1000)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
