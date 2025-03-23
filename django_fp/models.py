@@ -6,13 +6,13 @@ User = get_user_model()
 
 class ItemType(models.IntegerChoices):
     MOVIE = 1, 'Film'
-    TV_SHOW = 2, 'Seriál'
-    OTHER = 3, 'Ostatní'
+    TV_SHOW = 2, 'Serial'
+    OTHER = 3, 'Others'
 
 class Genre(models.IntegerChoices):
     SCIFI = 1, 'Sci-fi'
     DRAMA = 2, 'Drama'
-    COMERY = 3, 'Komedie'
+    COMERY = 3, 'Comedy'
 
 class Item(models.Model):
     name = models.CharField(max_length=40)

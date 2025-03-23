@@ -12,7 +12,7 @@
     <h1>{{ item }}</h1>
     <img src="{{ item.image.url }}" alt="{{ item.name }}">
     <h2>Tagline: {{ item.title }}</h2>
-    <h2>Genre: {{ item.genre }}</h2>
-    <h2>Type: {{ item.type }}</h2>
+    <h2>Genre: {{ item.get_genre_display }}</h2>
+    <h2>Type: {{ item.get_type_display }}</h2>
     <h4>Description: {{ item.desc }}</h4>
 {% endblock  %}
