@@ -1,8 +1,10 @@
 img {
     max-width: 330px;
     max-height: 500px;
+    float: left;
+    margin: 0 15px 15px 0;
 }
 
-.container {
+/* .container {
     background: #131730;
-}
+} */
