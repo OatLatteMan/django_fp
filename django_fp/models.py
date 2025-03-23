@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
+from datetime import date
 
 User = get_user_model()
 
@@ -33,4 +34,8 @@ class Review(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
     rate = models.PositiveSmallIntegerField()
+
+class Actor(models.Model):
+    name = models.CharField(max_length=40)
+    born = models.DateField()
 
