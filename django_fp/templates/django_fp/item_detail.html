@@ -10,6 +10,7 @@
 {% block django_fp_base %}
 {% include 'django_fp/includes/nav.html' %}
     <h1>Hi! This is "{{ item }}"</h1>
-    <img src="{{ item.image.url }}" alt="">
-    <h2>{{ item.desc }}</h2>
+    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+    <h2>{{ item.title }}</h2>
+    <h3>{{ item.desc }}</h3>
 {% endblock  %}
