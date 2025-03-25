@@ -35,6 +35,9 @@ class ItemList(ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 
+class ActorDetail(DetailView):
+    model = models.Actor
+
 class ActorList(ListView):
     model = models.Actor
     queryset = models.Actor.objects.all()
