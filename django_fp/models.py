@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
 from datetime import date
+from django.contrib import admin
 
 User = get_user_model()
 
@@ -15,12 +16,22 @@ class Genre(models.IntegerChoices):
     DRAMA = 2, 'Drama'
     COMERY = 3, 'Comedy'
 
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey('Item', on_delete=models.CASCADE, related_name='reviews')
+    text = models.CharField(max_length=500)
+    rate = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return self.user.username
+
 class Item(models.Model):
     name = models.CharField(max_length=40)
     title = models.CharField(max_length=50)
     desc = models.TextField(max_length=1000)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='item_reviews')
     image = models.ImageField(blank=True, null=True, upload_to='item/')
 
     def __str__(self):
@@ -28,15 +39,6 @@ class Item(models.Model):
 
     def get_absolute_url(self):
         return reverse("django_fp:item_detail", kwargs={"pk": self.pk})
-
-class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    text = models.CharField(max_length=500)
-    rate = models.PositiveSmallIntegerField()
-
-    def __str__(self):
-        return self.user.username
 
 class Actor(models.Model):
     name = models.CharField(max_length=40)
