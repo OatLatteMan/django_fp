@@ -46,6 +46,9 @@ class Actor(models.Model):
     name = models.CharField(max_length=40)
     born = models.DateField()
 
+    def get_absolute_url(self):
+        return reverse("django_fp:actor_detail", kwargs={"pk": self.pk})
+
     def __str__(self):
         return self.name
 
