@@ -37,5 +37,8 @@ class Review(models.Model):
 
 class Actor(models.Model):
     name = models.CharField(max_length=40)
-    # born = models.DateField()
+    born = models.DateField()
+
+    def __str__(self):
+        return self.name
 
