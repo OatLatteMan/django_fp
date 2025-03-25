@@ -11,4 +11,5 @@
 {% include 'django_fp/includes/nav.html' %}
     <h1>{{ actor }}</h1>
     <h3>Born: {{ actor.born }}</h3>
+    <h3>Plays in: <a href="{{ actor.film.get_absolute_url }}">{{ actor.film }}</a></h3>
 {% endblock  %}
