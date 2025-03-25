@@ -4,25 +4,18 @@
 <link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
 <link rel="stylesheet" href="{% static "django_fp/main.css" %}">
 {% endblock  %}
-{% block django_fp_title %}Films and serials{% endblock  %}
-{% block django_fp_desc %}Films and serials of django_fp app{% endblock  %}
+{% block django_fp_title %}Actors{% endblock  %}
+{% block django_fp_desc %}Actors of django_fp app{% endblock  %}
 
 {% block django_fp_base %}
 {% include 'django_fp/includes/nav.html' %}
 
-    <h1>Films and serials</h1>
+    <h1>Actors</h1>
 
     <ul class="list">
-        {% for films in object_list %}
+        {% for actors in object_list %}
             <li>
-                <a href="{{ films.get_absolute_url }}">
-                    {% if films.image %}
-                    <img src="{{ films.image.url }}" alt="" loading='lazy'>
-                    {% else %}
-                    <img src="https://picsum.photos/200?{{ films.id }}" alt="" loading='lazy'>
-                    {% endif %}
-                    <h2>{{ films.name }}</h2>
-                </a>
+                <a href="#">{{ actors.name }}</a>
             </li>
         {% endfor %}
     </ul>

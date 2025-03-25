@@ -37,10 +37,7 @@ class ItemList(ListView):
 
 class ActorList(ListView):
     model = models.Actor
-    queryset = models.Item.objects.all()
-
-def actors(request):
-    return render(request, 'django_fp/actors.html')
+    queryset = models.Actor.objects.all()
 
 def django_fp_new(request):
     if request.method == 'POST':
