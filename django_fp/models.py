@@ -35,6 +35,9 @@ class Review(models.Model):
     text = models.CharField(max_length=500)
     rate = models.PositiveSmallIntegerField()
 
+    def __str__(self):
+        return self.user.username
+
 class Actor(models.Model):
     name = models.CharField(max_length=40)
     born = models.DateField()
