@@ -41,6 +41,7 @@ class Item(models.Model):
         return reverse("django_fp:item_detail", kwargs={"pk": self.pk})
 
 class Actor(models.Model):
+    film = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='actor_film')
     name = models.CharField(max_length=40)
     born = models.DateField()
 
