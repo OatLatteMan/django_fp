@@ -35,6 +35,10 @@ class ItemList(ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 
+class ActorList(ListView):
+    model = models.Actor
+    queryset = models.Item.objects.all()
+
 def actors(request):
     return render(request, 'django_fp/actors.html')
 
