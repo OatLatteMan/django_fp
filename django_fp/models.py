@@ -45,6 +45,7 @@ class Actor(models.Model):
     film = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='actor_film')
     name = models.CharField(max_length=40)
     born = models.DateField()
+    image = models.ImageField(blank=True, null=True, upload_to='actor/')
 
     def get_absolute_url(self):
         return reverse("django_fp:actor_detail", kwargs={"pk": self.pk})
