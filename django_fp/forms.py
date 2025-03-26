@@ -7,6 +7,6 @@ class ItemForm(ModelForm):
         model = Item
         fields = ['name', 'desc']
         widgets = {
-            'name': forms.Textarea(attrs={'rows': 2}),
+            'name': forms.Textarea(attrs={'rows': 1}),
             'desc': forms.Textarea(attrs={'rows': 4})
         }
