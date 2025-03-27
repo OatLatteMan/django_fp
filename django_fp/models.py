@@ -33,7 +33,7 @@ class Item(models.Model):
     desc = models.TextField(max_length=1000)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
-    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='item_reviews')
+    review = models.ForeignKey(Review, blank=True, null=True, on_delete=models.CASCADE, related_name='item_reviews')
     image = models.ImageField(blank=True, null=True, upload_to='item/')
 
     def __str__(self):
