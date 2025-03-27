@@ -3,6 +3,19 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
 <link rel="stylesheet" href="{% static "django_fp/main.css" %}">
+<style>
+    a {
+        text-decoration: none;
+        font-size: 35px;
+    }
+    li a p {
+        margin-left: -25px;
+    }
+    a button {
+        background: green;
+        border: 2px dashed purple;
+    }
+</style>
 {% endblock  %}
 {% block django_fp_title %}Films and serials{% endblock  %}
 {% block django_fp_desc %}Films and serials of django_fp app{% endblock  %}
