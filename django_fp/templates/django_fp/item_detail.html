@@ -11,14 +11,14 @@
 {% include 'django_fp/includes/nav.html' %}
     <h1>{{ item }}</h1>
     <img src="{{ item.image.url }}" alt="{{ item.name }}">
-    <h2>Tagline: {{ item.title }}</h2>
-    <h2>Genre: {{ item.get_genre_display }}</h2>
-    <h2>Type: {{ item.get_type_display }}</h2>
-    <h3>Actors:
+    <p>Tagline: {{ item.title }}</p>
+    <p>Genre: {{ item.get_genre_display }}</p>
+    <p>Type: {{ item.get_type_display }}</p>
+    <p>Actors:
         {% for actor in item.actors.all %}
             <a href="{{ actor.get_absolute_url }}">{{ actor }}</a>,
         {% endfor %}
-    </h3>
-    <h4>Description: {{ item.desc }}</h4>
-    <h3>Reviews: {{ item.review.text }}</h3>
+    </p>
+    <p>Description: {{ item.desc }}</p>
+    <p>Reviews: {{ item.review.text }}</p>
 {% endblock  %}
