@@ -2,6 +2,21 @@
     <div class="container">
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
+          <style>
+            a button {
+                padding-top: 8px;
+                align-items: center;
+                margin-right: 20px;
+                max-height: 47.25px;
+            }
+            a {
+              text-decoration: none;
+              font-size: 35px;
+            }
+            li a p {
+                margin-left: -25px;
+            }
+          </style>
 
             <a class="navbar-item" href="{% url 'django_fp:home' %}">
               <button class="button is-info is-dark">Home</button></a>

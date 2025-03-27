@@ -3,6 +3,14 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
 <link rel="stylesheet" href="{% static "django_fp/main.css" %}">
+<style>
+    li a {
+        text-decoration: underline;
+    }
+    a:hover {
+        color: green;
+    }
+</style>
 {% endblock  %}
 {% block django_fp_title %}Actors{% endblock  %}
 {% block django_fp_desc %}Actors of django_fp app{% endblock  %}
