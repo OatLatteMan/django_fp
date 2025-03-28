@@ -13,5 +13,5 @@ class ItemForm(ModelForm):
             'title': forms.Textarea(attrs={'rows': 1}),
             'type': forms.Select(choices=models.ItemType),
             'genre': forms.Select(choices=models.Genre),
-            'image': forms.ClearableFileInput(),
+            'image': forms.FileInput(),
         }
