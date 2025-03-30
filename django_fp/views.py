@@ -7,23 +7,6 @@ from django_fp.forms import ItemForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
-"""
-Tabs:
-    - Home (about)
-    - Films and serials (detail)
-    - Actors
-
-Films:
-    - Inception
-    - Interstellar
-    - 50 shades of gray
-
-Serials:
-    - Friends
-    - Gotham
-    - The Witcher
-"""
-
 
 def home(request):
     return render(request, 'django_fp/home.html')
