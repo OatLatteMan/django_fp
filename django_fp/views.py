@@ -39,5 +39,10 @@ def django_fp_new(request):
     return render(request, 'django_fp/new.html', {'form': form})
 
 def django_fp_delete_item(request, number):
-    
+    if request.method == 'POST':
+        item = get_object_or_404(Item, id=number)
+        item.delete()
+        return redirect('/django_fp/films')
+
+    return redirect('/django_fp/')
 
