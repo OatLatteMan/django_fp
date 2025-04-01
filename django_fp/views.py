@@ -37,3 +37,7 @@ def django_fp_new(request):
         form = ItemForm()
 
     return render(request, 'django_fp/new.html', {'form': form})
+
+def django_fp_delete_item(request, number):
+    
+
