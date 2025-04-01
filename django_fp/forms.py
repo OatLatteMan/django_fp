@@ -9,7 +9,7 @@ class ItemForm(ModelForm):
         widgets = {
             'name': forms.TextInput(),
             'desc': forms.Textarea(attrs={'rows': 2}),
-            'actors': forms.SelectMultiple(),
+            'actors': forms.SelectMultiple(choices=models.Actor),
             'title': forms.Textarea(attrs={'rows': 1}),
             'type': forms.Select(choices=models.ItemType),
             'genre': forms.Select(choices=models.Genre),
