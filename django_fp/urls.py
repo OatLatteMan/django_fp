@@ -5,7 +5,7 @@ app_name = 'django_fp'
 
 urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp
-    path('', views.home, name='home'),
+    path('', views.index, name='index'),
 
     # http://127.0.0.1:[PORT]/django_fp/films
     path('films/', views.ItemList.as_view(), name='films'),

@@ -8,8 +8,8 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 
 
-def home(request):
-    return render(request, 'django_fp/home.html')
+def index(request):
+    return render(request, 'django_fp/index.html')
 
 class ItemDetail(DetailView):
     model = models.Item

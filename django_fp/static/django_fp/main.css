@@ -21,3 +21,11 @@ ul.list li a img {
     height: 64px;
     object-fit: cover;
 }
+
+.btn-yellow {
+    background-color: yellowgreen;
+    max-width: 150px;
+    color: black;
+    font-weight: 700;
+}
+
