@@ -1,4 +1,5 @@
 {% extends "django_fp/_base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
 {% block django_fp_title %}Home{% endblock  %}
 {% block django_fp_desc %}Home page of django_fp app{% endblock  %}
@@ -17,7 +18,7 @@
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
 
-        {% comment %} {{ form|crispy }} {% endcomment %}
+        {{ form|crispy }}
 
         <div class="buttons">
             <button class="btn-blueish outline" type="submit">Login</button>
