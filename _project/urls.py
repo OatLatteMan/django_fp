@@ -7,4 +7,7 @@ urlpatterns = [
     path('django_fp/', include('django_fp.urls', namespace='django_fp')),
 
     path('admin/', admin.site.urls),
+
+    path('accounts/', include("django.contrib.auth.urls")),
+
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
