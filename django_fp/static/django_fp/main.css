@@ -23,9 +23,7 @@ ul.list li a img {
 }
 
 .btn-yellow {
-    background-color: yellowgreen;
-    max-width: 150px;
-    color: black;
+    background-color: rgb(114, 138, 186);
+    color: rgb(50, 50, 50);
     font-weight: 700;
 }
-
