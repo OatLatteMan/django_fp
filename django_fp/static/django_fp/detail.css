@@ -6,7 +6,10 @@ img {
 }
 
 .btn-red {
-    background-color: red;
+    background-color: lightcoral;
+    color: black;
+    font-weight: 700;
+    max-width: 150px;
 }
 
 /* .container {
