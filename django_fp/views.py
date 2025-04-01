@@ -14,7 +14,7 @@ def index(request):
 class ItemDetail(DetailView):
     model = models.Item
 
-class ItemList(ListView):
+class ItemList():
     model = models.Item
     queryset = models.Item.objects.all()
 
@@ -42,9 +42,10 @@ def django_fp_new(request):
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
         if request.user.is_authenticated:
-            item = get_object_or_404(Item, id=number)
+            item = get_object_or_404(Item, id=number, user=request.user)
             item.delete()
             return redirect('/django_fp/films')
 
     return redirect('/django_fp/')
+
 
