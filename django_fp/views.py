@@ -40,9 +40,10 @@ def django_fp_new(request):
 
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
-        item = get_object_or_404(Item, id=number)
-        item.delete()
-        return redirect('/django_fp/films')
+        if request.user.is_authenticated:
+            item = get_object_or_404(Item, id=number)
+            item.delete()
+            return redirect('/django_fp/films')
 
     return redirect('/django_fp/')
 

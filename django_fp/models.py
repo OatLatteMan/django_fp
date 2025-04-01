@@ -26,7 +26,7 @@ class Review(models.Model):
         return self.user.username
 
 class Item(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
     # actors = models.ForeignKey('Actor', on_delete=models.CASCADE, related_name='films_actors')
     actors = models.ManyToManyField('Actor', blank=True, related_name='films_actors')
     name = models.CharField(max_length=40)
