@@ -32,6 +32,7 @@ def django_fp_new(request):
         if form.is_valid():
             item = form.save(commit=False)
             item.save()
+            form.save_m2m()
             return redirect('/django_fp/films')
     else:
         form = ItemForm()
