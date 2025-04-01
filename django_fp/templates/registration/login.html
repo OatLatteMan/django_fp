@@ -14,5 +14,17 @@
         <script>window.location.href = "{% url 'django_fp:films' %}";</script>
     {% endif %}
 
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        {% comment %} {{ form|crispy }} {% endcomment %}
+
+        <div class="buttons">
+            <button class="btn-blueish outline" type="submit">Login</button>
+            <a href="#" class="contrast" disabled type="submit">Register</a>
+        </div>
+
+    </form>
+
 {% endblock  %}
 

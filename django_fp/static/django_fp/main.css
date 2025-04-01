@@ -22,8 +22,13 @@ ul.list li a img {
     object-fit: cover;
 }
 
-.btn-yellow {
+.btn-blueish {
     background-color: rgb(114, 138, 186);
     color: rgb(50, 50, 50);
     font-weight: 700;
+}
+
+.outline {
+    max-width: 121.8px;
+    margin-right: 21px;
 }
