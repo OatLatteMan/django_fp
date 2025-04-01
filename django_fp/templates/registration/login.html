@@ -1,0 +1,18 @@
+{% extends "django_fp/_base.html" %}
+{% load static %}
+{% block django_fp_title %}Home{% endblock  %}
+{% block django_fp_desc %}Home page of django_fp app{% endblock  %}
+{% block styles %}
+<link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
+<link rel="stylesheet" href="{% static "django_fp/main.css" %}">
+{% endblock  %}
+
+{% block django_fp_base %}
+{% include 'django_fp/includes/nav.html' %}
+
+    {% if user.is_authenticated %}
+        <script>window.location.href = "{% url 'django_fp:films' %}";</script>
+    {% endif %}
+
+{% endblock  %}
+
