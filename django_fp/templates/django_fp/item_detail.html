@@ -30,5 +30,8 @@
     <p>Description: {{ item.desc }}</p>
     <p>Reviews: {{ item.review.text }}</p>
 
-    <form action="{% url '' %}"></form>
+    <form action="{% url 'django_fp:item_delete' number=item.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="outline btn-red">DELETE</button>
+    </form>
 {% endblock  %}

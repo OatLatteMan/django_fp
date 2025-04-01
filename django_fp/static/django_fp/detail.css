@@ -5,6 +5,10 @@ img {
     margin: 0 15px 15px 0;
 }
 
+.btn-red {
+    background-color: red;
+}
+
 /* .container {
     background: #131730;
 } */
