@@ -14,7 +14,7 @@ def index(request):
 class ItemDetail(DetailView):
     model = models.Item
 
-class ItemList():
+class ItemList(ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 
