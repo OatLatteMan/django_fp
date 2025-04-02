@@ -9,6 +9,7 @@ from django.views.generic.detail import DetailView
 
 
 def index(request):
+    print(f"Logged-in user is: {request.user.id}")
     return render(request, 'django_fp/index.html')
 
 class ItemDetail(DetailView):
@@ -42,10 +43,16 @@ def django_fp_new(request):
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
         if request.user.is_authenticated:
-            item = get_object_or_404(Item, id=number, user=request.user)
-            item.delete()
-            return redirect('/django_fp/films')
+            print(f"Trying to delete item with id {number} for user {request.user.id}")
+            try:
+                print(f"Logged-in user is: {request.user.id}")
+                item = get_object_or_404(Item, id=number, user=request.user) #
+                print(f"Item found: {item}")
+                item.delete()
+                return redirect('/django_fp/films/')
+            except:
+                print("Item not found or does not belong to the user.")
+                return redirect('/django_fp/')
 
     return redirect('/django_fp/')
-
 

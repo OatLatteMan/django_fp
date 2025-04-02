@@ -20,7 +20,7 @@ urlpatterns = [
     path('actors/<int:pk>', views.ActorDetail.as_view(), name='actor_detail'),
 
     # http://127.0.0.1:[PORT]/django_fp/new
-    path('new', views.django_fp_new, name='new'),
+    path('new/', views.django_fp_new, name='new'),
 
     # http://127.0.0.1:[PORT]/django_fp/[id]/delete
     path('<int:number>/delete/', views.django_fp_delete_item, name='item_delete'),

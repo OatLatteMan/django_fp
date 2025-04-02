@@ -16,3 +16,11 @@ class ItemForm(ModelForm):
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'review': forms.Select()
         }
+
+    def save(self, commit=True):
+        item = super().save(commit=False)
+        if hasattr(self, 'request') and self.request.user.is_authenticated:
+            item.user = self.request.user  # Assign the logged-in user automatically
+        if commit:
+            item.save()
+        return item

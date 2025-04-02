@@ -1,8 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
-from datetime import date
-from django.contrib import admin
 
 User = get_user_model()
 
@@ -26,7 +24,7 @@ class Review(models.Model):
         return self.user.username
 
 class Item(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
     actors = models.ManyToManyField('Actor', blank=True, related_name='films_actors')
     name = models.CharField(max_length=40)
     title = models.CharField(max_length=50)
