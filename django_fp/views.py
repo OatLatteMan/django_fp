@@ -52,12 +52,14 @@ def django_fp_new_review(request):
 
         if form.is_valid():
             review = form.save(commit=False)
+            review.user = request.user
+            review.item = request.item
             review.save()
             return redirect('/django_fp/')
     else:
         form = ReviewForm()
 
-    return render(request, 'django_fp/review.html', {'form': form})
+    return render(request, 'django_fp/item_detail.html', {'form': form})
 
     pass
 

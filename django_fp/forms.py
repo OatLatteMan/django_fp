@@ -16,3 +16,12 @@ class ItemForm(ModelForm):
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'review': forms.Select()
         }
+
+class ReviewForm(ModelForm):
+    class Meta:
+        model = models.Review
+        fields = ['text', 'rate']
+        widgets = {
+            'text': forms.Textarea(attrs={'rows': 2}),
+            'rate': forms.Select()
+        }
