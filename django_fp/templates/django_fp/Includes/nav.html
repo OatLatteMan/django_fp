@@ -4,17 +4,24 @@
         <div class="navbar-brand">
           <style>
             a button {
-                padding-top: 8px;
-                align-items: center;
-                margin-right: 20px;
-                max-height: 47.25px;
+              padding-top: 8px;
+              align-items: center;
+              margin-right: 20px;
+              max-height: 47.25px;
             }
             a {
               text-decoration: none;
               font-size: 35px;
             }
             li a p {
-                margin-left: -25px;
+              margin-left: -25px;
+            }
+            .logout {
+              background-color: darkred;
+              position: fixed;
+              right: 0;
+              border: 1px solid purple;
+              color: beige;
             }
           </style>
 
@@ -25,7 +32,7 @@
             <a class="navbar-item" href="{% url 'django_fp:actors' %}">
               <button class="button is-info is-dark">Actors</button></a>
             <a class="navbar-item" href="{% url 'django_fp:logout' %}">
-              <button class="button is-info is-dark">Logout</button></a>
+              <button class="button is-info is-dark logout">Logout</button></a>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" hidden='true'>
                 <span aria-hidden="true"></span>
