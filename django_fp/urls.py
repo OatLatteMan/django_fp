@@ -7,6 +7,9 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp
     path('', views.index, name='index'),
 
+    # http://127.0.0.1:[PORT]/django_fp/logout
+    path('logout/', views.logout_view, name='logout'),
+
     # http://127.0.0.1:[PORT]/django_fp/films
     path('films/', views.ItemList.as_view(), name='films'),
 

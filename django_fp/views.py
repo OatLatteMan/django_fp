@@ -9,6 +9,10 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth import logout
 
 
+def logout_view(request):
+    logout(request)
+    return render(request, 'django_fp/index.html')
+
 def index(request):
     print(f"Logged-in user is: {request.user.id}")
     return render(request, 'django_fp/index.html')

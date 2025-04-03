@@ -14,7 +14,7 @@
     {% if user.is_authenticated %}
         <script>window.location.href = "{% url 'django_fp:films' %}";</script>
     {% endif %}
-
+    
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
 
