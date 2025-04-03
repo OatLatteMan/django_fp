@@ -6,6 +6,7 @@ from django_fp.models import ItemType, Genre, Item, Review
 from django_fp.forms import ItemForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.contrib.auth import logout
 
 
 def index(request):
