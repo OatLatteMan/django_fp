@@ -46,6 +46,15 @@ def django_fp_new(request):
 
     return render(request, 'django_fp/new.html', {'form': form})
 
+# def django_fp_new_review(request):
+#     if request.method == 'POST':
+#         form = ReviewForm(request.POST)
+
+#         if form.is_valid():
+#             review = form.save(commit=False)
+
+#     pass
+
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
         if request.user.is_authenticated:
