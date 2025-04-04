@@ -35,5 +35,16 @@
             {% csrf_token %}
             <button type="submit" class="outline btn-red">DELETE</button>
         </form>
+
+        {% comment %} <form method="POST" action="{% url 'django_fp:new_review' %}">
+          {% csrf_token %}
+
+          {% load crispy_forms_tags %}
+          {{ form|crispy }}
+
+          <div class="buttons">
+              <button type="submit" class="button is-warning">Add...</button>
+          </div>
+        </form> {% endcomment %}
     {% endif %}
 {% endblock  %}

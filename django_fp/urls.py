@@ -17,7 +17,7 @@ urlpatterns = [
     path('films/<int:pk>', views.ItemDetail.as_view(), name='item_detail'),
 
     # http://127.0.0.1:2090:[PORT]/django_fp
-    path('films/<int:pk>/new_review', views.django_fp_new_review, name='new_review'),
+    path('new_review/', views.django_fp_new_review, name='new_review'),
 
     # http://127.0.0.1:[PORT]/django_fp/actors
     path('actors/', views.ActorList.as_view(), name='actors'),

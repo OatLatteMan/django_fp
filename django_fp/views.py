@@ -56,7 +56,7 @@ def django_fp_new_review(request):
             review.user = request.user
             review.item = request.item
             review.save()
-            return redirect('/django_fp/') # !!!!!!! ===== !!!!!!! ===== !!!!!!! ===== !!!!!!! #
+            return redirect('/django_fp/item_detail') # !!!!!!! ===== !!!!!!! ===== !!!!!!! ===== !!!!!!! #
     else:
         form = ReviewForm()
 
