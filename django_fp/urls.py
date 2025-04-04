@@ -14,7 +14,7 @@ urlpatterns = [
     path('films/', views.ItemList.as_view(), name='films'),
 
     # http://127.0.0.1:[PORT]/django_fp/[item.id]
-    path('films/<int:pk>', views.ItemDetail.as_view(), name='item_details'),
+    path('films/<int:pk>', views.ItemDetail.as_view(), name='item_detail'),
 
     # http://127.0.0.1:[PORT]/django_fp/actors
     path('actors/', views.ActorList.as_view(), name='actors'),

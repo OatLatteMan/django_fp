@@ -8,6 +8,7 @@ from django_fp.forms import ReviewForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import logout
+from django.urls import reverse
 
 
 def logout_view(request):
@@ -38,7 +39,7 @@ class ItemDetail(DetailView):
             new_review.user = request.user
             new_review.item = item
             new_review.save()
-            return redirect('item_detail', pk=item.pk)
+            return redirect(f'/django_fp/films/{item.pk}')
 
         return self.get(request, *args, **kwargs)
 
@@ -67,21 +68,6 @@ def django_fp_new(request):
         form = ItemForm()
 
     return render(request, 'django_fp/new.html', {'form': form})
-
-def django_fp_new_review(request):
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-
-        if form.is_valid():
-            review = form.save(commit=False)
-            review.user = request.user
-            review.item = request.item
-            review.save()
-            return redirect('/django_fp/item_detail') # !!!!!!! ===== !!!!!!! ===== !!!!!!! ===== !!!!!!! #
-    else:
-        form = ReviewForm()
-
-    return render(request, 'django_fp/item_detail.html', {'form': form})
 
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
