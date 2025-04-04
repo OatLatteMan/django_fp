@@ -22,6 +22,6 @@ class ReviewForm(ModelForm):
         model = models.Review
         fields = ['text', 'rate']
         widgets = {
-            'text': forms.Textarea(attrs={'rows': 4, 'cols': 40}),
-            'rate': forms.Select(choices=[(i, i) for i in range(1, 11)]),  # for 1-5 rating
+            'text': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'text'}),
+            'rate': forms.Select(choices=[(i, i) for i in range(1, 11)], attrs={'class': 'rate'}),  # for 1-5 rating
         }
