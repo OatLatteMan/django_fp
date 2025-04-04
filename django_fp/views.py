@@ -20,6 +20,27 @@ def index(request):
 
 class ItemDetail(DetailView):
     model = models.Item
+    context_object_name = 'item'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['review_form'] = ReviewForm()
+        context['reviews'] = self.object.reviews.all()
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        item = self.get_object()
+
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            new_review = review_form.save(commit=False)
+            new_review.user = request.user
+            new_review.item = item
+            new_review.save()
+            return redirect('item_detail', pk=item.pk)
+
+        return self.get(request, *args, **kwargs)
 
 class ItemList(ListView):
     model = models.Item

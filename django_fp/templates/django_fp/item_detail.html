@@ -30,21 +30,26 @@
     <p>Description: {{ item.desc }}</p>
     <p>Reviews: {{ item.review.text }}</p>
 
+    <h3>Reviews:</h3>
+    {% for review in reviews %}
+        <div class="review">
+            <p><strong>{{ review.user.username }}:</strong> {{ review.text }} (Rating: {{ review.rate }})</p>
+        </div>
+    {% empty %}
+        <p>No reviews yet.</p>
+    {% endfor %}
+
+    <h3>Write a Review:</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ review_form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
+
     {% if user.is_authenticated %}
         <form action="{% url 'django_fp:item_delete' number=item.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="outline btn-red">DELETE</button>
         </form>
-
-        {% comment %} <form method="POST" action="{% url 'django_fp:new_review' %}">
-          {% csrf_token %}
-
-          {% load crispy_forms_tags %}
-          {{ form|crispy }}
-
-          <div class="buttons">
-              <button type="submit" class="button is-warning">Add...</button>
-          </div>
-        </form> {% endcomment %}
     {% endif %}
 {% endblock  %}
