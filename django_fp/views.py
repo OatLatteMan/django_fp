@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django_fp import models
 from django_fp.models import ItemType, Genre, Item, Review
 from django_fp.forms import ItemForm
+from django_fp.forms import ReviewForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import logout
@@ -55,13 +56,11 @@ def django_fp_new_review(request):
             review.user = request.user
             review.item = request.item
             review.save()
-            return redirect('/django_fp/')
+            return redirect('/django_fp/') # !!!!!!! ===== !!!!!!! ===== !!!!!!! ===== !!!!!!! #
     else:
         form = ReviewForm()
 
     return render(request, 'django_fp/item_detail.html', {'form': form})
-
-    pass
 
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
