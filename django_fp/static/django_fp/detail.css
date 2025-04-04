@@ -12,6 +12,26 @@ img {
     max-width: 150px;
 }
 
+.text {
+    max-width: 443.6px;
+}
+
+.rate {
+    max-width: 100.1px;
+}
+
+.submit {
+    max-width: 443.6px;
+    background-color: rgb(95, 115, 155);
+}
+
+.review_form {
+    padding: 5px;
+    border: 2px solid rgb(38, 46, 62);
+    max-width: 463.6px;
+    margin-bottom: 10px;
+}
+
 /* .container {
     background: #131730;
 } */

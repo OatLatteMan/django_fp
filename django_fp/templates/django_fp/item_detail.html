@@ -39,11 +39,11 @@
         <p>No reviews yet.</p>
     {% endfor %}
 
-    <h3>Write a Review:</h3>
-    <form method="post">
+    <form method="post" class='review_form'>
+        <h3>Write a Review:</h3>
         {% csrf_token %}
         {{ review_form.as_p }}
-        <button type="submit">Submit Review</button>
+        <button type="submit" class='submit'>Submit Review</button>
     </form>
 
     {% if user.is_authenticated %}
