@@ -15,8 +15,8 @@ class Genre(models.IntegerChoices):
     COMERY = 3, 'Comedy'
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    item = models.ForeignKey('Item', on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    item = models.ForeignKey('Item', on_delete=models.PROTECT, related_name='reviews')
     text = models.CharField(max_length=500)
     rate = models.PositiveSmallIntegerField()
 
@@ -24,14 +24,14 @@ class Review(models.Model):
         return self.user.username
 
 class Item(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     actors = models.ManyToManyField('Actor', blank=True, related_name='films_actors')
     name = models.CharField(max_length=40)
     title = models.CharField(max_length=50)
     desc = models.TextField(max_length=1000)
     type = models.IntegerField(choices=ItemType)
     genre = models.IntegerField(choices=Genre)
-    review = models.ForeignKey(Review, blank=True, null=True, on_delete=models.CASCADE, related_name='item_reviews')
+    review = models.ForeignKey(Review, blank=True, null=True, on_delete=models.PROTECT, related_name='item_reviews')
     image = models.ImageField(blank=True, null=True, upload_to='item/')
 
     def __str__(self):
@@ -41,7 +41,7 @@ class Item(models.Model):
         return reverse("django_fp:item_detail", kwargs={"pk": self.pk})
 
 class Actor(models.Model):
-    film = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='actor_film')
+    film = models.ForeignKey(Item, on_delete=models.PROTECT, related_name='actor_film')
     name = models.CharField(max_length=40)
     born = models.DateField()
     image = models.ImageField(blank=True, null=True, upload_to='actor/')
