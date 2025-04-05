@@ -14,9 +14,11 @@
         Let me introduce you today into my small pre-selected choice of films and serials for you to spend your day with!
     </p>
 
+    {% if not request.user.is_authenticated %}
     <div class="buttons are-medium is-centered">
         <a href="{% url 'login' %}"><button class="btn-blueish outline">Login</button></a>
         <a href="#" disabled><button class="contrast" disabled>Register</button></a>
     </div>
+    {% endif %}
 {% endblock  %}
 
