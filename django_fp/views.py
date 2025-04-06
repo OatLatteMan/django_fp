@@ -47,6 +47,9 @@ class ItemList(ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 
+    def get_queryset(self):
+        return Item.objects.filter(user=self.request.user)
+
 class ActorDetail(DetailView):
     model = models.Actor
 
