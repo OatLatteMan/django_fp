@@ -2,13 +2,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django_fp import models
-from django_fp.models import ItemType, Genre, Item, Review
+from django_fp.models import ItemType, Genre, Item, Review, Actor
 from django_fp.forms import ItemForm
 from django_fp.forms import ReviewForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth import logout
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django_fp import urls
 
 
 def logout_view(request):
@@ -43,19 +45,34 @@ class ItemDetail(DetailView):
 
         return self.get(request, *args, **kwargs)
 
-class ItemList(ListView):
+class ItemList(LoginRequiredMixin, ListView):
     model = models.Item
     queryset = models.Item.objects.all()
 
+    def get_login_url(self):
+        return reverse_lazy('django_fp:index')
+
     def get_queryset(self):
-        return Item.objects.filter(user=self.request.user)
+        if self.request.user.is_authenticated:
+            return Item.objects.all()
+        else:
+            return Item.objects.none()
 
 class ActorDetail(DetailView):
     model = models.Actor
 
-class ActorList(ListView):
+class ActorList(LoginRequiredMixin, ListView):
     model = models.Actor
     queryset = models.Actor.objects.all()
+
+    def get_login_url(self):
+        return reverse_lazy('django_fp:index')
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return Actor.objects.all()
+        else:
+            return Actor.objects.none()
 
 def django_fp_new(request):
     if request.method == 'POST':
