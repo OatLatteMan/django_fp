@@ -94,7 +94,7 @@ def django_fp_new_actor(request):
         form = ActorForm(request.POST, request.FILES)
 
         if form.is_valid():
-            actor = form.save(commit=False)
+            actor = form.save()
             actor.save()
             form.save_m2m()
             return redirect('/django_fp/actors')

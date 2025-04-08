@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django_fp import models
+from django_fp.models import Actor
 
 class ItemForm(ModelForm):
     class Meta:
@@ -19,13 +20,13 @@ class ItemForm(ModelForm):
 
 class ActorForm(ModelForm):
     class Meta:
-        model = models.Actor
-        fields = ['name', 'born', 'image', 'film']
+        model = Actor
+        fields = ['name', 'born', 'image', 'film']  # Assuming 'film' is the ForeignKey to Item
         widgets = {
             'name': forms.TextInput(),
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'born': forms.DateInput(),
-            'film': forms.Select()
+            'film': forms.Select()  # ForeignKey, not ManyToManyField
         }
 
     def save(self, commit=True):
@@ -35,7 +36,7 @@ class ActorForm(ModelForm):
         if commit:
             actor.save()
 
-        # Now, associate this actor with the selected film
+        # Now, associate this actor with the selected film (Item)
         film = self.cleaned_data['film']
         film.actors.add(actor)  # Add the actor to the film's actors
 
