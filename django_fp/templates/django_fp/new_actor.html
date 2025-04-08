@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a new Actor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body>
+    {% include "django_fp/includes/nav.html" %}
+    <section class="section container" style="max-width: 640px;">
+        <h1 class="title">Create a new Actor</h1>
+        <form method="POST" action="{% url 'django_fp:new_actor' %}" enctype='multipart/form-data'>
+          {% csrf_token %}
+
+          {% load crispy_forms_tags %}
+          {{ form|crispy }}
+
+          <div class="buttons">
+              <button type="submit" class="button is-warning">Add...</button>
+              <a href="{% url 'django_fp:actors' %}" class="button is-warning is-light">Cancel</a>
+
+          </div>
+        </form>
+      </section>
+</body>
+</html>

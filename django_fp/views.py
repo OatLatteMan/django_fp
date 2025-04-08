@@ -100,7 +100,7 @@ def django_fp_new_actor(request):
             return redirect('/django_fp/actors')
         else:
             form = ActorForm()
-    return render(request, 'django_fp/new?actor.html', {'form': form})
+    return render(request, 'django_fp/new_actor.html', {'form': form})
 
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
