@@ -13,4 +13,9 @@
     <img src="{{ actor.image.url }}" alt="actor.name">
     <p>Born: {{ actor.born }}</p>
     <p>Plays in: <a href="{{ actor.film.get_absolute_url }}">{{ actor.film }}</a></p>
+    <p>Plays in: 
+        {% for item in actor.film.all %}
+            <a href="{{ item.get_absolute_url }}">{{ item }}</a>
+        {% endfor %}
+    </p>
 {% endblock  %}
