@@ -25,8 +25,21 @@ class ActorForm(ModelForm):
             'name': forms.TextInput(),
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'born': forms.DateInput(),
-            'film': forms.SelectMultiple()
+            'film': forms.Select()
         }
+
+    def save(self, commit=True):
+        actor = super().save(commit=False)
+
+        # Save the actor first if commit is True
+        if commit:
+            actor.save()
+
+        # Now, associate this actor with the selected film
+        film = self.cleaned_data['film']
+        film.actors.add(actor)  # Add the actor to the film's actors
+
+        return actor
 
 class ReviewForm(ModelForm):
     class Meta:
