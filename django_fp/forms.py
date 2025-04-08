@@ -20,7 +20,13 @@ class ItemForm(ModelForm):
 class ActorForm(ModelForm):
     class Meta:
         model = models.Actor
-        pass
+        fields = ['name', 'born', 'image', 'film']
+        widgets = {
+            'name': forms.TextInput(),
+            'image': forms.ClearableFileInput(attrs={'multiple': False}),
+            'born': forms.SelectDateWidget(),
+            'film': forms.SelectMultiple()
+        }
 
 class ReviewForm(ModelForm):
     class Meta:
