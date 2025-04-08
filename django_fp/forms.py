@@ -17,7 +17,10 @@ class ItemForm(ModelForm):
             'review': forms.Select()
         }
 
-
+class ActorForm(ModelForm):
+    class Meta:
+        model = models.Actor
+        pass
 
 class ReviewForm(ModelForm):
     class Meta:
