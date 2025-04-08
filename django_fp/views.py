@@ -98,8 +98,9 @@ def django_fp_new_actor(request):
             actor.save()
             form.save_m2m()
             return redirect('/django_fp/actors')
-        else:
-            form = ActorForm()
+    else:
+        form = ActorForm()
+
     return render(request, 'django_fp/new_actor.html', {'form': form})
 
 def django_fp_delete_item(request, number):
