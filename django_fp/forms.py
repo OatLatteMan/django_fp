@@ -24,7 +24,7 @@ class ActorForm(ModelForm):
         widgets = {
             'name': forms.TextInput(),
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
-            'born': forms.SelectDateWidget(),
+            'born': forms.DateInput(),
             'film': forms.SelectMultiple()
         }
 
