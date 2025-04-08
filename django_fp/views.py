@@ -61,6 +61,12 @@ class ItemList(LoginRequiredMixin, ListView):
 class ActorDetail(DetailView):
     model = models.Actor
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['films'] = self.object.films_actors.all()
+        return context
+
 class ActorList(LoginRequiredMixin, ListView):
     model = models.Actor
     queryset = models.Actor.objects.all()
