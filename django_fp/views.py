@@ -74,7 +74,7 @@ class ActorList(LoginRequiredMixin, ListView):
         else:
             return Actor.objects.none()
 
-def django_fp_new(request):
+def django_fp_new_film(request):
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
 
@@ -88,6 +88,9 @@ def django_fp_new(request):
         form = ItemForm()
 
     return render(request, 'django_fp/new_film.html', {'form': form})
+
+def django_fp_new_actor(request):
+    pass
 
 def django_fp_delete_item(request, number):
     if request.method == 'POST':

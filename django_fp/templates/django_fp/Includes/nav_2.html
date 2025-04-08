@@ -34,9 +34,9 @@
             {% if request.user.is_authenticated %}
             <a class="navbar-item" href="{% url 'django_fp:logout' %}">
               <button class="button is-info is-dark logout">Logout</button></a>
-            <a class="navbar-item" href="{% url 'django_fp:new' %}">
+            <a class="navbar-item" href="{% url 'django_fp:new_film' %}">
               <button class="button is-info is-dark create">New Film</button></a>
-            <a class="navbar-item" href="{% url 'django_fp:new' %}">
+            <a class="navbar-item" href="{% url 'django_fp:new_actor' %}">
               <button class="button is-info is-dark create">New Actor</button></a>
             {% endif %}
 

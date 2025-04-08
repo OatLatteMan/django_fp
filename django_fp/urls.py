@@ -23,7 +23,10 @@ urlpatterns = [
     path('actors/<int:pk>', views.ActorDetail.as_view(), name='actor_detail'),
 
     # http://127.0.0.1:[PORT]/django_fp/new
-    path('new/', views.django_fp_new, name='new'),
+    path('new_film/', views.django_fp_new_film, name='new_film'),
+
+    # http://127.0.0.1:[PORT]/django_fp/new
+    path('new_actor/', views.django_fp_new_actor, name='new_actor'),
 
     # http://127.0.0.1:[PORT]/django_fp/[id]/delete
     path('<int:number>/delete/', views.django_fp_delete_item, name='item_delete'),
