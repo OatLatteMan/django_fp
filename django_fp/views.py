@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django_fp import models
 from django_fp.models import ItemType, Genre, Item, Review, Actor
-from django_fp.forms import ItemForm
+from django_fp.forms import ItemForm, ActorForm
 from django_fp.forms import ReviewForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -90,7 +90,17 @@ def django_fp_new_film(request):
     return render(request, 'django_fp/new_film.html', {'form': form})
 
 def django_fp_new_actor(request):
-    pass
+    if request.method == 'POST':
+        form = ActorForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            actor = form.save(commit=False)
+            actor.save()
+            form.save_m2m()
+            return redirect('/django_fp/actors')
+        else:
+            form = ActorForm()
+    return render(request, 'django_fp/new?actor.html', {'form': form})
 
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
