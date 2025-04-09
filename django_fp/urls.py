@@ -16,10 +16,10 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/[item.id]
     path('films/<int:pk>', views.ItemDetail.as_view(), name='item_detail'),
 
-    # http://127.0.0.1:[PORT]/django_fp/actors
+    # http://127.0.0.1:[PORT]/django_fp/actors/[actor.id]
     path('actors/', views.ActorList.as_view(), name='actors'),
 
-    # http://127.0.0.1:[PORT]/django_fp/actors
+    # http://127.0.0.1:[PORT]/django_fp/actors/[actor.id]
     path('actors/<int:pk>', views.ActorDetail.as_view(), name='actor_detail'),
 
     # http://127.0.0.1:[PORT]/django_fp/new
@@ -28,7 +28,10 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/new
     path('new_actor/', views.django_fp_new_actor, name='new_actor'),
 
-    # http://127.0.0.1:[PORT]/django_fp/[id]/delete
+    # http://127.0.0.1:[PORT]/django_fp/actors/[actor.id]/delete
+    path('<int:number>/delete/', views.django_fp_delete_actor, name='actor_delete'),
+
+    # http://127.0.0.1:[PORT]/django_fp/films/[item.id]/delete
     path('<int:number>/delete/', views.django_fp_delete_item, name='item_delete'),
 ]
 

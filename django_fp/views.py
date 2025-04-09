@@ -125,3 +125,17 @@ def django_fp_delete_item(request, number):
 
     return redirect('/django_fp/')
 
+def django_fp_delete_actor(request, number):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            try:
+                print(f"Logged-in user is: {request.user.id}")
+                actor = get_object_or_404(Actor, id=number)
+                print(f"Actor found: {actor}")
+                actor.delete()
+                return redirect('/django_fp/actors/')
+            except:
+                return redirect('/django_fp/')
+
+    return redirect('/django_fp/')
+
