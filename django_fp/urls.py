@@ -28,10 +28,11 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/new
     path('new_actor/', views.django_fp_new_actor, name='new_actor'),
 
-    # http://127.0.0.1:[PORT]/django_fp/actors/[actor.id]/delete
-    path('<int:number>/delete/', views.django_fp_delete_actor, name='actor_delete'),
-
     # http://127.0.0.1:[PORT]/django_fp/films/[item.id]/delete
-    path('<int:number>/delete/', views.django_fp_delete_item, name='item_delete'),
+    path('<int:number>/delete_film/', views.django_fp_delete_item, name='item_delete'),
+
+    # http://127.0.0.1:[PORT]/django_fp/actors/[actor.id]/delete
+    path('<int:number>/delete_actor/', views.django_fp_delete_actor, name='actor_delete'),
+
 ]
 

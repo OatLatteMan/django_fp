@@ -121,9 +121,9 @@ def django_fp_delete_item(request, number):
                 return redirect('/django_fp/films/')
             except:
                 print("Item not found or does not belong to the user.")
-                return redirect('/django_fp/')
+                return redirect('/django_fp/actors')
 
-    return redirect('/django_fp/')
+    return redirect('/django_fp/films')
 
 def django_fp_delete_actor(request, number):
     if request.method == 'POST':
