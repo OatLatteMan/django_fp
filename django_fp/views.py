@@ -1,17 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from django.contrib.auth.models import User
 from django_fp import models
-from django_fp.models import ItemType, Genre, Item, Review, Actor
+from django_fp.models import Item, Actor
 from django_fp.forms import ItemForm, ActorForm
 from django_fp.forms import ReviewForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
 from django.contrib.auth import logout
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django_fp import urls
 
 
 def logout_view(request):
@@ -27,7 +24,7 @@ class ItemUpdate(UpdateView):
     fields = ['name', 'desc', 'title']
 
     def get_success_url(self):
-        return reverse_lazy('item_detail', kwargs={'pk': self.object.pk})
+        return redirect(f'/django_fp/films/{self.object.pk}')
 
 class ItemDetail(DetailView):
     model = models.Item
