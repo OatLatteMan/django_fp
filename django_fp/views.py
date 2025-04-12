@@ -24,7 +24,7 @@ class ItemUpdate(UpdateView):
     fields = ['name', 'desc', 'title']
 
     def get_success_url(self):
-        return redirect(f'/django_fp/films/{self.object.pk}')
+        return reverse_lazy('item_detail', kwargs={'pk': self.object.pk})
 
 class ItemDetail(DetailView):
     model = models.Item
