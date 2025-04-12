@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editing...</title>
-</head>
-<body>
+{% extends "_base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
+{% endblock  %}
+{% block django_fp_base %}
+{% include 'django_fp/includes/nav.html' %}
+<h2>Edit Item: {{ form.instance.name }}</h2>
 
-</body>
-</html>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+
+  <button type="submit">Save Changes</button>
+</form>
+
+<a href="{% url 'item_detail' pk=form.instance.pk %}">Cancel</a>
+{% endblock  %}
