@@ -1,4 +1,4 @@
-{% extends "_base.html" %}
+{% extends "django_fp/_base.html" %}
 {% load static %}
 {% block styles %}
 <link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
@@ -14,5 +14,5 @@
   <button type="submit">Save Changes</button>
 </form>
 
-<a href="{% url 'item_detail' pk=form.instance.pk %}">Cancel</a>
+<a href="{% url 'django_fp:item_detail' pk=form.instance.pk %}">Cancel</a>
 {% endblock  %}
