@@ -34,5 +34,8 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/actors/[actor.id]/delete
     path('<int:number>/delete_actor/', views.django_fp_delete_actor, name='actor_delete'),
 
+    # http://127.0.0.1:[PORT]/django_fp/[item.id]/edit
+    path('<int:number>/edit', views.ItemUpdate.as_view(), name='item_edit'),
+
 ]
 

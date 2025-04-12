@@ -7,6 +7,7 @@ from django_fp.forms import ItemForm, ActorForm
 from django_fp.forms import ReviewForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic import UpdateView
 from django.contrib.auth import logout
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,6 +21,9 @@ def logout_view(request):
 def index(request):
     print(f"Logged-in user is: {request.user.id}")
     return render(request, 'django_fp/index.html')
+
+class ItemUpdate(UpdateView):
+    model = models.Item
 
 class ItemDetail(DetailView):
     model = models.Item
