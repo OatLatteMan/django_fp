@@ -6,6 +6,6 @@
     max-width: 443.6px;
 }
 
-#id_type, #id_genre, #id_actors, #id_name {
+#id_type, #id_genre, #id_actors, #id_name, #id_born, #id_film {
     max-width: 343.6px;
 }
