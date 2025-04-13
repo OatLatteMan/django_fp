@@ -9,6 +9,7 @@ from django.views.generic import UpdateView
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django import forms
 
 
 def logout_view(request):
