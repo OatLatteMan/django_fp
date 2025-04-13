@@ -5,6 +5,13 @@ img {
     margin: 0 15px 15px 0;
 }
 
+.btn-edit {
+    background-color: cyan;
+    color: black;
+    font-weight: 700;
+    max-width: 150px;
+}
+
 .btn-red {
     background-color: lightcoral;
     color: black;

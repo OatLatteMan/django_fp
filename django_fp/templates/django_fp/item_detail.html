@@ -47,6 +47,10 @@
     </form>
 
     {% if user.is_authenticated %}
+         {% comment %} <form action="{% url 'django_fp:item_edit' pk=item.id %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="outline btn-edit">Edit</button>
+        </form> {% endcomment %}
         <form action="{% url 'django_fp:item_delete' number=item.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="outline btn-red">DELETE</button>
