@@ -22,7 +22,7 @@ def index(request):
 
 class ItemUpdate(UpdateView):
     model = models.Item
-    fields = ['name', 'desc', 'title']
+    fields = ['name', 'desc', 'title', 'actors', 'type', 'genre', 'image']
 
     def get_success_url(self):
         return reverse_lazy('django_fp:item_detail', kwargs={'pk': self.object.pk})

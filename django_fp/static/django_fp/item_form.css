@@ -1,11 +1,15 @@
 #id_name {
-    
+    max-width: 193.6px;
 }
 
 #id_desc {
-
+    max-width: 743.6px;
 }
 
 #id_title {
+    max-width: 443.6px;
+}
 
+#id_type, #id_genre, #id_actors {
+    max-width: 343.6px;
 }
