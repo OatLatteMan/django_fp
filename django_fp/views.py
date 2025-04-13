@@ -73,6 +73,7 @@ class ItemList(LoginRequiredMixin, ListView):
 
 class ActorDetail(DetailView):
     model = models.Actor
+    # context_object_name = 'actor'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

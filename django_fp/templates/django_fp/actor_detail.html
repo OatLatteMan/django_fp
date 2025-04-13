@@ -19,6 +19,9 @@
         {% endfor %}
     </p>
     {% if user.is_authenticated %}
+        <form action="{% url 'django_fp:actor_edit' pk=object.pk %}" method="get">
+            <button type="submit" class="outline btn-edit">Edit</button>
+        </form>
         <form action="{% url 'django_fp:actor_delete' number=actor.id %}" method="POST">
             {% csrf_token %}
             <button type="submit" class="outline btn-red">DELETE</button>
