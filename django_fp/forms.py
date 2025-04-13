@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django_fp import models
 from django_fp.models import Actor
+import re
 
 class ItemForm(ModelForm):
     class Meta:
@@ -17,6 +18,20 @@ class ItemForm(ModelForm):
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'review': forms.Select()
         }
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        banned_names = ['untitled']
+
+        if name and name.lower().strip() in banned_names:
+            raise forms.ValidationError("Film name cannot be 'Untitled'.")
+        return name
+
+    # def clean_name(self):
+    #     name = self.cleaned_data.get('name')
+    #     if re.match(r'^test', name.strip(), re.IGNORECASE):
+    #         raise forms.ValidationError("Titles starting with 'test' are not allowed.")
+    #     return name
 
 class ActorForm(ModelForm):
     class Meta:

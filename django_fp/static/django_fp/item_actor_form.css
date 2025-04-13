@@ -9,3 +9,12 @@
 #id_type, #id_genre, #id_actors, #id_name, #id_born, #id_film {
     max-width: 343.6px;
 }
+
+.has-error input {
+    border-color: red;
+}
+
+.error p {
+    color: red;
+    font-size: 0.9em;
+}
