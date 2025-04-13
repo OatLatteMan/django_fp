@@ -37,5 +37,8 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/[item.id]/edit
     path('films/<int:pk>/edit', views.ItemUpdate.as_view(), name='item_edit'),
 
+    # http://127.0.0.1:[PORT]/django_fp/[actor.id]/edit
+    path('actors/<int:pk>/edit', views.ActorUpdate.as_view(), name='actor_edit'),
+
 ]
 
