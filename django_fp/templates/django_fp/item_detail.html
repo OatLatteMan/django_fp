@@ -54,7 +54,7 @@
         </form>
         <form action="{% url 'django_fp:item_delete' number=item.id %}" method="POST">
             {% csrf_token %}
-            <button type="submit" class="outline btn-red" onclick="return confirm('Are you sure you want to delete this item?');">DELETE</button>
+            <button type="submit" class="outline btn-red" onclick="confirmDelete('{% url 'django_fp:item_delete' number=item.id %}'); return false;">DELETE</button>
         </form>
     {% endif %}
 {% endblock  %}
