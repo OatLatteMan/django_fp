@@ -49,8 +49,8 @@
     </form>
 
     {% if user.is_authenticated %}
-        <form action="{% url 'django_fp:item_edit' pk=item.pk %}" method="get">
-            <button type="submit" class="outline btn-edit" onsubmit="confirmEditForm(event, this);">Edit</button>
+        <form action="{% url 'django_fp:item_edit' pk=item.pk %}" method="get" onsubmit="confirmEditForm(event, this);">
+            <button type="submit" class="outline btn-edit">Edit</button> 
         </form>
         <form action="{% url 'django_fp:item_delete' number=item.id %}" method="POST" onsubmit="confirmDeleteForm(event, this);">
             {% csrf_token %}
