@@ -1,3 +1,11 @@
+html {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+:root {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
 :root[data-theme="dark"] {
     --pico-background-color: rgb(19, 23, 31);
     --pico-color: #f1f1f1;
@@ -6,4 +14,13 @@
 :root[data-theme="light"] {
     --pico-background-color: #ffffff;
     --pico-color: #111111;
+}
+
+.theme-toggle-btn {
+    margin-right: 20px;
+    max-height: 56.85px;
+    padding-top: 7.075px;
+    padding-bottom: 7.075px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
