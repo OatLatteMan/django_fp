@@ -3,6 +3,7 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
 <link rel="stylesheet" href="{% static "django_fp/main.css" %}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <style>
     li a {
         text-decoration: underline;
@@ -28,4 +29,20 @@
             </li>
         {% endfor %}
     </ul>
+
+{% if messages %}
+<script>
+    {% for message in messages %}
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: '{{ message.tags|default:"info" }}',
+            title: '{{ message|escapejs }}',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true
+        });
+    {% endfor %}
+</script>
+{% endif %}
 {% endblock  %}
