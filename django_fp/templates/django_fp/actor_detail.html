@@ -3,6 +3,8 @@
 {% block styles %}
 <link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
 <link rel="stylesheet" href="{% static "django_fp/detail.css" %}">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static 'django_fp/js/actions.js' %}"></script>
 {% endblock  %}
 {% block django_fp_title %}{{ django_fp.name }}{% endblock %}
 {% block django_fp_desc %}{% endblock  %}
