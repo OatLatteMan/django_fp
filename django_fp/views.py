@@ -28,12 +28,20 @@ class ItemUpdate(UpdateView):
     def get_success_url(self):
         return reverse_lazy('django_fp:item_detail', kwargs={'pk': self.object.pk})
 
+    def form_valid(self, form):
+        messages.success(self.request, "Item successfully updated.")
+        return super().form_valid(form)
+
 class ActorUpdate(UpdateView):
     model = models.Actor
     fields = ['name', 'born', 'film', 'image']
 
     def get_success_url(self):
         return reverse_lazy('django_fp:actor_detail', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        messages.success(self.request, "Actor successfully updated.")
+        return super().form_valid(form)
 
 class ItemDetail(DetailView):
     model = models.Item

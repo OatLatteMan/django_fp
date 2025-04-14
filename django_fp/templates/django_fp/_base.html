@@ -12,6 +12,21 @@
   <body>
     <main class="container">
       {% block django_fp_base %}{% endblock  %}
+      {% if messages %}
+      <script>
+          {% for message in messages %}
+              Swal.fire({
+                  toast: true,
+                  position: 'top-end',
+                  icon: '{{ message.tags|default:"info" }}',
+                  title: '{{ message|escapejs }}',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true
+              });
+          {% endfor %}
+      </script>
+      {% endif %}
     </main>
   </body>
 </html>
