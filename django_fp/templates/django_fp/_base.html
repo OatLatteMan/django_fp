@@ -12,21 +12,35 @@
   <body>
     <main class="container">
       {% block django_fp_base %}{% endblock  %}
-      {% if messages %}
       <script>
-          {% for message in messages %}
-              Swal.fire({
-                  toast: true,
-                  position: 'top-end',
-                  icon: '{{ message.tags|default:"info" }}',
-                  title: '{{ message|escapejs }}',
-                  showConfirmButton: false,
-                  timer: 3000,
-                  timerProgressBar: true
-              });
-          {% endfor %}
+        const toastQueue = [];
+
+        {% for message in messages %}
+            toastQueue.push({
+                icon: '{{ message.tags|default:"info" }}',
+                title: '{{ message|escapejs }}',
+                timer: 3000,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timerProgressBar: true,
+                background: '{{ message.tags == "success" and "#d4edda" or message.tags == "error" and "#f8d7da" or message.tags == "warning" and "#fff3cd" or "#d1ecf1" }}',
+                iconColor: '{{ message.tags == "success" and "#155724" or message.tags == "error" and "#721c24" or message.tags == "warning" and "#856404" or "#0c5460" }}',
+                customClass: {
+                    popup: 'animated fadeInDown faster'  // you can use animate.css or custom
+                }
+            });
+        {% endfor %}
+
+        // Function to show toasts one by one
+        (function showToasts(index = 0) {
+            if (index < toastQueue.length) {
+                Swal.fire(toastQueue[index]).then(() => {
+                    setTimeout(() => showToasts(index + 1), 300); // show next toast after slight delay
+                });
+            }
+        })();
       </script>
-      {% endif %}
     </main>
   </body>
 </html>
