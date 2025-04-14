@@ -48,11 +48,11 @@
 
     {% if user.is_authenticated %}
         <form action="{% url 'django_fp:item_edit' pk=item.pk %}" method="get">
-            <button type="submit" class="outline btn-edit">Edit</button>
+            <button type="submit" class="outline btn-edit" onclick="return confirm('Are you sure you want to edit this item?');">Edit</button>
         </form>
         <form action="{% url 'django_fp:item_delete' number=item.id %}" method="POST">
             {% csrf_token %}
-            <button type="submit" class="outline btn-red">DELETE</button>
+            <button type="submit" class="outline btn-red" onclick="return confirm('Are you sure you want to delete this item?');">DELETE</button>
         </form>
     {% endif %}
 {% endblock  %}
