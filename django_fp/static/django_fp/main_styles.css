@@ -1,0 +1,9 @@
+:root[data-theme="dark"] {
+    --pico-background-color: rgb(19, 23, 31);
+    --pico-color: #f1f1f1;
+}
+
+:root[data-theme="light"] {
+    --pico-background-color: #ffffff;
+    --pico-color: #111111;
+}

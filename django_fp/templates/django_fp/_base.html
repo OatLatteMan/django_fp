@@ -1,13 +1,17 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" id="html-root">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
     {% block styles %}{% endblock  %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static "django_fp/main_styles.css" %}">
     {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"> {% endcomment %}
+    <link rel="stylesheet" href="django_fp/">
     <title>{% block django_fp_title %}{% endblock  %}</title>
     <meta name='description' content="{% block django_fp_desc %}{% endblock  %}">
+    <script src="{% static 'django_fp/js/theme.js' %}"></script>
   </head>
   <body class="" id="theme-body">
     <main class="container">
