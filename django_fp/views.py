@@ -29,8 +29,10 @@ class ItemUpdate(UpdateView):
         return reverse_lazy('django_fp:item_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
-        messages.success(self.request, "Item successfully updated.")
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        item = form.instance  # the updated object
+        messages.success(self.request, f'Item "{item.name}" successfully updated.')
+        return response
 
 class ActorUpdate(UpdateView):
     model = models.Actor
@@ -40,8 +42,10 @@ class ActorUpdate(UpdateView):
         return reverse_lazy('django_fp:actor_detail', kwargs={'pk': self.object.pk})
 
     def form_valid(self, form):
-        messages.success(self.request, "Actor successfully updated.")
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        actor = form.instance
+        messages.success(self.request, f'Actor "{actor.name}" successfully updated!')
+        return response
 
 class ItemDetail(DetailView):
     model = models.Item
@@ -141,7 +145,7 @@ def django_fp_delete_item(request, number):
                 item = get_object_or_404(Item, id=number, user=request.user) #
                 print(f"Item found: {item}")
                 item.delete()
-                messages.success(request, "Item successfully deleted.")  # ✅ SUCCESS MESSAGE
+                messages.success(request, f'Item "{item.name}" successfully deleted.')  # ✅ SUCCESS MESSAGE
                 return redirect('/django_fp/films/')
             except:
                 print("Item not found or does not belong to the user.")
@@ -158,7 +162,7 @@ def django_fp_delete_actor(request, number):
                 actor = get_object_or_404(Actor, id=number)
                 print(f"Actor found: {actor}")
                 actor.delete()
-                messages.success(request, "Actor successfully deleted.")  # ✅ SUCCESS MESSAGE
+                messages.success(request, f'Actor "{actor.name}" successfully deleted.')  # ✅ SUCCESS MESSAGE
                 return redirect('/django_fp/actors/')
             except:
                 messages.error(request, "Actor not found or not owned by you.")  # ❌ ERROR MESSAGE
