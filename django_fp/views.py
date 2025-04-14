@@ -10,6 +10,7 @@ from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django import forms
+from django.contrib import messages
 
 
 def logout_view(request):
@@ -132,9 +133,11 @@ def django_fp_delete_item(request, number):
                 item = get_object_or_404(Item, id=number, user=request.user) #
                 print(f"Item found: {item}")
                 item.delete()
+                messages.success(request, "Item successfully deleted.")  # ✅ SUCCESS MESSAGE
                 return redirect('/django_fp/films/')
             except:
                 print("Item not found or does not belong to the user.")
+                messages.error(request, "Item not found or not owned by you.")  # ❌ ERROR MESSAGE
                 return redirect('/django_fp/actors')
 
     return redirect('/django_fp/films')
@@ -147,8 +150,10 @@ def django_fp_delete_actor(request, number):
                 actor = get_object_or_404(Actor, id=number)
                 print(f"Actor found: {actor}")
                 actor.delete()
+                messages.success(request, "Actor successfully deleted.")  # ✅ SUCCESS MESSAGE
                 return redirect('/django_fp/actors/')
             except:
+                messages.error(request, "Actor not found or not owned by you.")  # ❌ ERROR MESSAGE
                 return redirect('/django_fp/')
 
     return redirect('/django_fp/')
