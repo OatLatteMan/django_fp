@@ -9,7 +9,6 @@ from django.views.generic import UpdateView
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django import forms
 from django.contrib import messages
 
 
@@ -18,7 +17,6 @@ def logout_view(request):
     return render(request, 'django_fp/index.html')
 
 def index(request):
-    print(f"Logged-in user is: {request.user.id}")
     return render(request, 'django_fp/index.html')
 
 class ItemUpdate(UpdateView):
@@ -139,16 +137,12 @@ def django_fp_new_actor(request):
 def django_fp_delete_item(request, number):
     if request.method == 'POST':
         if request.user.is_authenticated:
-            print(f"Trying to delete item with id {number} for user {request.user.id}")
             try:
-                print(f"Logged-in user is: {request.user.id}")
                 item = get_object_or_404(Item, id=number, user=request.user) #
-                print(f"Item found: {item}")
                 item.delete()
                 messages.success(request, f'🎬 Item "{item.name}" successfully deleted.')  # ✅ SUCCESS MESSAGE
                 return redirect('/django_fp/films/')
             except:
-                print("Item not found or does not belong to the user.")
                 messages.error(request, "Item not found or not owned by you.")  # ❌ ERROR MESSAGE
                 return redirect('/django_fp/actors')
 
@@ -158,9 +152,7 @@ def django_fp_delete_actor(request, number):
     if request.method == 'POST':
         if request.user.is_authenticated:
             try:
-                print(f"Logged-in user is: {request.user.id}")
                 actor = get_object_or_404(Actor, id=number)
-                print(f"Actor found: {actor}")
                 actor.delete()
                 messages.success(request, f'🎭 Actor "{actor.name}" successfully deleted.')  # ✅ SUCCESS MESSAGE
                 return redirect('/django_fp/actors/')

@@ -2,7 +2,6 @@ from django import forms
 from django.forms import ModelForm
 from django_fp import models
 from django_fp.models import Actor
-import re
 
 class ItemForm(ModelForm):
     class Meta:
@@ -27,21 +26,15 @@ class ItemForm(ModelForm):
             raise forms.ValidationError("Film name cannot be 'Untitled'.")
         return name
 
-    # def clean_name(self):
-    #     name = self.cleaned_data.get('name')
-    #     if re.match(r'^test', name.strip(), re.IGNORECASE):
-    #         raise forms.ValidationError("Titles starting with 'test' are not allowed.")
-    #     return name
-
 class ActorForm(ModelForm):
     class Meta:
         model = Actor
-        fields = ['name', 'born', 'image', 'film']  # Assuming 'film' is the ForeignKey to Item
+        fields = ['name', 'born', 'image', 'film']
         widgets = {
             'name': forms.TextInput(),
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'born': forms.DateInput(),
-            'film': forms.Select()  # ForeignKey, not ManyToManyField
+            'film': forms.Select()
         }
 
     def save(self, commit=True):
