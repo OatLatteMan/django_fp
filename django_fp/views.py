@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django_fp import models
 from django_fp.models import Item, Actor
 from django_fp.forms import ItemForm, ActorForm
@@ -11,6 +11,9 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 
+
+def profile_page(request):
+    return HttpResponse(request, "Future user's profile page")
 
 def logout_view(request):
     logout(request)
