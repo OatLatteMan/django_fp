@@ -40,5 +40,11 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/[actor.id]/edit
     path('actors/<int:pk>/edit', views.ActorUpdate.as_view(), name='actor_edit'),
 
+    # http://127.0.0.1:[PORT]/django_fp/profile
+    path('profile', views.profile_view, name='profile'),
+
+    # http://127.0.0.1:[PORT]/django_fp/profile/edit
+    path('profile/edit', views.profile_edit, name='edit_profile'),
+
 ]
 
