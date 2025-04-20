@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django_fp import models
-from django_fp.models import Actor
+from django_fp.models import Actor, Profile
 
 class ItemForm(ModelForm):
     class Meta:
@@ -58,3 +58,9 @@ class ReviewForm(ModelForm):
             'text': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'class': 'text'}),
             'rate': forms.Select(choices=[(i, i) for i in range(1, 11)], attrs={'class': 'rate'}),  # for 1-5 rating
         }
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'bio']
+

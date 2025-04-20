@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django_fp import models
 from django_fp.models import Item, Actor
-from django_fp.forms import ItemForm, ActorForm
-from django_fp.forms import ReviewForm
+from django_fp.forms import ItemForm, ActorForm, ReviewForm, ProfileForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic import UpdateView
@@ -10,10 +9,25 @@ from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def profile_page(request):
     return HttpResponse(request, "Future user's profile page")
+
+def profile_view(request):
+    return render(request, 'profile.html', {'profile': request.user.profile})
+
+@login_required
+def profile_edit(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = ProfileForm(instance=request.user.profile)
+    return render(request, 'profile_edit.html', {'form': form})
 
 def logout_view(request):
     logout(request)
