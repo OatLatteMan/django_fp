@@ -14,12 +14,6 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Profile"
 
-@receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-    instance.profile.save()
-
 class ItemType(models.IntegerChoices):
     MOVIE = 1, 'Film'
     TV_SHOW = 2, 'Serial'
@@ -67,4 +61,10 @@ class Actor(models.Model):
 
     def __str__(self):
         return self.name
+
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
 
