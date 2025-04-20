@@ -8,8 +8,14 @@
 {% include "django_fp/includes/nav.html" %}
 
 <h2>{{ profile.user.username }}'s Profile</h2>
-<img src="{{ profile.avatar.url }}" width="150" height="150" alt="Avatar">
+
+{% if profile.avatar %}
+  <img src="{{ profile.avatar.url }}" width="150" height="150">
+{% else %}
+  <img src="/media/avatars/default.png" width="150" height="150">
+{% endif %}
+
 <p>{{ profile.bio }}</p>
-<a href="{% url 'edit_profile' %}">Edit Profile</a>
+<a href="{% url 'django_fp:edit_profile' %}">Edit Profile</a>
 
 {% endblock  %}

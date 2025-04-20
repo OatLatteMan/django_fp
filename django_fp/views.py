@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def profile_view(request):
-    return render(request, 'profile.html', {'profile': request.user.profile})
+    return render(request, 'django_fp/profile.html', {'profile': request.user.profile})
 
 @login_required
 def profile_edit(request):
@@ -21,10 +21,10 @@ def profile_edit(request):
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('django_fp:profile')
     else:
         form = ProfileForm(instance=request.user.profile)
-    return render(request, 'profile_edit.html', {'form': form})
+    return render(request, 'django_fp/profile_edit.html', {'form': form})
 
 def logout_view(request):
     logout(request)

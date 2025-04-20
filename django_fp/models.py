@@ -8,7 +8,7 @@ User = get_user_model()
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    avatar = models.ImageField(blank=True, null=True, upload_to='avatars/')
+    avatar = models.ImageField(upload_to='avatars/', default='avatars/default.png')
     bio = models.TextField(blank=True)
 
     def __str__(self):
@@ -66,5 +66,6 @@ class Actor(models.Model):
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
-    instance.profile.save()
+    else:
+        instance.profile.save()
 
