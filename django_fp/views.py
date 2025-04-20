@@ -12,9 +12,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-def profile_page(request):
-    return HttpResponse(request, "Future user's profile page")
-
 def profile_view(request):
     return render(request, 'profile.html', {'profile': request.user.profile})
 
