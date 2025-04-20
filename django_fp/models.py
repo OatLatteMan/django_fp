@@ -7,7 +7,7 @@ from django.dispatch import receiver
 User = get_user_model()
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.SET_NULL)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(blank=True, null=True, upload_to='avatars/')
     bio = models.TextField(blank=True)
 
