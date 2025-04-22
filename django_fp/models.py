@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
 User = get_user_model()
@@ -28,7 +28,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     item = models.ForeignKey('Item', null=True, on_delete=models.SET_NULL, related_name='reviews')
     text = models.CharField(max_length=500)
-    rate = models.PositiveSmallIntegerField()
+    rate = models.PositiveSmallIntegerField(default=1)
 
     def __str__(self):
         return self.user.username
@@ -43,6 +43,7 @@ class Item(models.Model):
     genre = models.IntegerField(choices=Genre)
     review = models.ForeignKey(Review, blank=True, null=True, on_delete=models.SET_NULL, related_name='item_reviews')
     image = models.ImageField(blank=True, null=True, upload_to='item/')
+    average_rating = models.FloatField(default=0.0)
 
     def __str__(self):
         return self.name
@@ -68,4 +69,21 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     else:
         instance.profile.save()
+
+def update_item_average_rating(item):
+    reviews = item.reviews.all()
+    if reviews.exists():
+        avg = sum([r.rate for r in reviews]) / reviews.count()
+    else:
+        avg = 0.0
+    item.average_rating = avg
+    item.save()
+
+@receiver(post_save, sender=Review)
+def recalculate_rating_on_save(sender, instance, **kwargs):
+    update_item_average_rating(instance.item)
+
+@receiver(post_delete, sender=Review)
+def recalculate_rating_on_delete(sender, instance, **kwargs):
+    update_item_average_rating(instance.item)
 
