@@ -23,6 +23,13 @@
               border: 1px solid purple;
               color: beige;
             }
+            .profile {
+              background-color: goldenrod;
+              position: fixed;
+              right: 130px;
+              border: 1px solid blue;
+              color: black
+            }
           </style>
             <button id="theme-toggle" class="navbar-item theme-toggle-btn">🌙</button>
             <a class="navbar-item" href="{% url 'django_fp:index' %}">
@@ -32,6 +39,8 @@
             <a class="navbar-item" href="{% url 'django_fp:actors' %}">
               <button class="button is-info is-dark">Actors</button></a>
             {% if request.user.is_authenticated %}
+            <a class="navbar-item" href="{% url 'django_fp:profile' %}">
+              <button class="button is-info is-dark profile">User Profile</button></a>
             <a class="navbar-item" href="{% url 'django_fp:logout' %}">
               <button class="button is-info is-dark logout">Logout</button></a>
             <a class="navbar-item" href="{% url 'django_fp:new_film' %}">
