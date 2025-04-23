@@ -50,7 +50,15 @@ class Item(models.Model):
         return reverse("django_fp:item_detail", kwargs={"pk": self.pk})
 
 class ItemQuerySet(models.QuerySet):
-    pass
+
+    def top_rated(self):
+        return self.filter(average_rating__gte=7.0)
+
+    def  with_reviews(self):
+        return self.annotate(review_count=models.Count('reviews')).filter(review_count__gt=0)
+
+    def only_films(self):
+        return self.filter(item_type='Film')
 
 class Actor(models.Model):
     film = models.ForeignKey(Item, null=True, on_delete=models.SET_NULL, related_name='actor_film')
