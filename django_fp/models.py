@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.shortcuts import reverse
+# from django.utils import timezone
+from datetime import date
 
 User = get_user_model()
 
@@ -15,6 +17,17 @@ class ItemQuerySet(models.QuerySet):
     def films_only(self):
         return self.filter(type=ItemType.MOVIE)
 
+class ActorQuerySet(models.QuerySet):
+    def born_before(self, year):
+        return self.filter(born__lt=date(year, 1, 1))
+
+    def with_image(self):
+        return self.exclude(image='actor/Matthew_McConaughey_X6VKhkL.jpg')
+
+    def popular(self):
+        return self.annotate(film_count=models.Count('film')).order_by('-film_count')
+
+
 class ItemManager(models.Manager):
     def get_queryset(self):
         return ItemQuerySet(self.model, using=self.db)
@@ -28,6 +41,20 @@ class ItemManager(models.Manager):
 
     def films_only(self):
         return self.get_queryset().films_only()
+
+class ActorManager(models.Manager):
+    def get_queryset(self):
+        return ActorQuerySet(self.model, using=self.db)
+
+    def born_before(self, year):
+        return self.get_queryset().born_before(year)
+
+    def with_image(self):
+        return self.get_queryset().with_image()
+
+    def popular(self):
+        return self.get_queryset().popular()
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -58,7 +85,7 @@ class Review(models.Model):
 
 class Item(models.Model):
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    actors = models.ManyToManyField('Actor', blank=True, related_name='films_actors')
+    actors = models.ManyToManyField('Actor', related_name='films')
     name = models.CharField(max_length=40)
     title = models.CharField(max_length=50)
     desc = models.TextField(max_length=1000)
@@ -76,10 +103,10 @@ class Item(models.Model):
         return reverse("django_fp:item_detail", kwargs={"pk": self.pk})
 
 class Actor(models.Model):
-    film = models.ForeignKey(Item, null=True, on_delete=models.SET_NULL, related_name='actor_film')
     name = models.CharField(max_length=40)
     born = models.DateField()
     image = models.ImageField(blank=True, null=True, upload_to='actor/')
+    objects = ActorManager()
 
     def get_absolute_url(self):
         return reverse("django_fp:actor_detail", kwargs={"pk": self.pk})

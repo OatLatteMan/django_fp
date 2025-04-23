@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from django_fp import models
-from django_fp.models import Actor, Profile
+from django_fp.models import Actor, Profile, Item
 
 class ItemForm(ModelForm):
     class Meta:
@@ -26,27 +26,30 @@ class ItemForm(ModelForm):
             raise forms.ValidationError("Film name cannot be 'Untitled'.")
         return name
 
-class ActorForm(ModelForm):
+class ActorForm(forms.ModelForm):
+    films = forms.ModelMultipleChoiceField(
+        queryset=Item.objects.all(),
+        widget=forms.SelectMultiple(),
+        required=False,
+        label="Select Films/Serials"
+    )
+
     class Meta:
         model = Actor
-        fields = ['name', 'born', 'image', 'film']
+        fields = ['name', 'born', 'image', 'films']
         widgets = {
             'name': forms.TextInput(),
             'image': forms.ClearableFileInput(attrs={'multiple': False}),
             'born': forms.DateInput(),
-            'film': forms.Select()
         }
 
     def save(self, commit=True):
         actor = super().save(commit=False)
+        actor.save()  # Save first to get an ID
 
-        # Save the actor first if commit is True
-        if commit:
-            actor.save()
-
-        # Now, associate this actor with the selected film (Item)
-        film = self.cleaned_data['film']
-        film.actors.add(actor)  # Add the actor to the film's actors
+        films = self.cleaned_data.get('films')
+        if films:
+            actor.films.set(films)
 
         return actor
 

@@ -103,7 +103,7 @@ class ActorDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['films'] = self.object.films_actors.all()
+        context['films'] = self.object.films.all()
         return context
 
 class ActorList(LoginRequiredMixin, ListView):
@@ -137,11 +137,12 @@ def django_fp_new_film(request):
 def django_fp_new_actor(request):
     if request.method == 'POST':
         form = ActorForm(request.POST, request.FILES)
-
         if form.is_valid():
-            actor = form.save()
+            actor = form.save(commit=False)
             actor.save()
-            form.save_m2m()
+            films = form.cleaned_data.get('films')
+            if films:
+                actor.films.set(films)  # ✅ Connect the selected films
             return redirect('/django_fp/actors')
     else:
         form = ActorForm()
