@@ -4,6 +4,31 @@ from django.shortcuts import reverse
 
 User = get_user_model()
 
+
+class ItemQuerySet(models.QuerySet):
+    def top_rated(self):
+        return self.filter(average_rating__gte=7.0)
+
+    def with_reviews(self):
+        return self.annotate(review_count=models.Count('reviews')).filter(review_count__gt=0)
+
+    def films_only(self):
+        return self.filter(type=ItemType.MOVIE)
+
+class ItemManager(models.Manager):
+    def get_queryset(self):
+        return ItemQuerySet(self.model, using=self.db)
+
+    # Optional: custom methods are being exposed directly from manager
+    def top_rated(self):
+        return self.get_queryset().top_rated()
+
+    def with_reviews(self):
+        return self.get_queryset().with_reviews()
+
+    def films_only(self):
+        return self.get_queryset().films_only()
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatars/', default='avatars/default.png')
@@ -42,23 +67,13 @@ class Item(models.Model):
     review = models.ForeignKey(Review, blank=True, null=True, on_delete=models.SET_NULL, related_name='item_reviews')
     image = models.ImageField(blank=True, null=True, upload_to='item/')
     average_rating = models.FloatField(default=0.0)
+    objects = ItemManager()
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse("django_fp:item_detail", kwargs={"pk": self.pk})
-
-class ItemQuerySet(models.QuerySet):
-
-    def top_rated(self):
-        return self.filter(average_rating__gte=7.0)
-
-    def  with_reviews(self):
-        return self.annotate(review_count=models.Count('reviews')).filter(review_count__gt=0)
-
-    def only_films(self):
-        return self.filter(item_type='Film')
 
 class Actor(models.Model):
     film = models.ForeignKey(Item, null=True, on_delete=models.SET_NULL, related_name='actor_film')
