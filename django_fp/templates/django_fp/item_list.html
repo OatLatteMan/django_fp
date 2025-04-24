@@ -32,4 +32,28 @@
             </li>
         {% endfor %}
     </ul>
+
+    <div class="top-widget">
+        <h3>🔥 Most Viewed Films/Serials</h3>
+        <ul>
+          {% for item in top_items %}
+            <li>
+              <a href="{{ item.get_absolute_url }}">{{ item.name }}</a> – {{ item.views }} views
+            </li>
+          {% empty %}
+            <li>No items yet</li>
+          {% endfor %}
+        </ul>
+
+        <h3>🌟 Most Viewed Actors</h3>
+        <ul>
+          {% for actor in top_actors %}
+            <li>
+              <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a> – {{ actor.views }} views
+            </li>
+          {% empty %}
+            <li>No actors yet</li>
+          {% endfor %}
+        </ul>
+      </div>
 {% endblock  %}

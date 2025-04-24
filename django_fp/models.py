@@ -17,6 +17,9 @@ class ItemQuerySet(models.QuerySet):
     def films_only(self):
         return self.filter(type=ItemType.MOVIE)
 
+    def most_viewed(self, limit=4):
+        return self.order_by('-views')[:limit]
+
 class ActorQuerySet(models.QuerySet):
     def born_before(self, year):
         return self.filter(born__lt=date(year, 1, 1))
@@ -26,6 +29,9 @@ class ActorQuerySet(models.QuerySet):
 
     def popular(self):
         return self.annotate(num_films=models.Count('films')).order_by('-num_films')
+
+    def most_viewed(self, limit=4):
+        return self.order_by('-views')[:limit]
 
 
 class ItemManager(models.Manager):
@@ -42,6 +48,9 @@ class ItemManager(models.Manager):
     def films_only(self):
         return self.get_queryset().films_only()
 
+    def most_viewed(self):
+        return self.get_queryset().most_viewed()
+
 class ActorManager(models.Manager):
     def get_queryset(self):
         return ActorQuerySet(self.model, using=self.db)
@@ -54,6 +63,9 @@ class ActorManager(models.Manager):
 
     def popular(self):
         return self.get_queryset().popular()
+
+    def most_viewed(self):
+        return self.get_queryset().most_viewed()
 
 
 class Profile(models.Model):
