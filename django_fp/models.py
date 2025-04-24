@@ -95,6 +95,7 @@ class Item(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to='item/')
     average_rating = models.FloatField(default=0.0)
     objects = ItemManager()
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name
