@@ -104,11 +104,11 @@ class ItemList(LoginRequiredMixin, ListView):
         else:
             return Item.objects.none()
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['top_items'] = Item.objects.most_viewed()
-        context['top_actors'] = Actor.objects.most_viewed()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['top_items'] = Item.objects.most_viewed()
+    #     context['top_actors'] = Actor.objects.most_viewed()
+    #     return context
 
 class ActorDetail(DetailView):
     model = models.Actor
