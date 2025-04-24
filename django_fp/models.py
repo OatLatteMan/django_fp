@@ -25,7 +25,7 @@ class ActorQuerySet(models.QuerySet):
         return self.exclude(image='actor/Matthew_McConaughey_X6VKhkL.jpg')
 
     def popular(self):
-        return self.annotate(film_count=models.Count('film')).order_by('-film_count')
+        return self.annotate(num_films=models.Count('films')).order_by('-num_films')
 
 
 class ItemManager(models.Manager):
