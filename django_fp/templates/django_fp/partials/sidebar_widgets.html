@@ -1,0 +1,30 @@
+<div class="sidebar-widget">
+  <h3>🔥 Top Viewed Items</h3>
+  <ul>
+    {% for item in top_items %}
+      <li>
+        <a href="{{ item.get_absolute_url }}">
+          {{ item.name }} ({{ item.views }} views)
+        </a>
+      </li>
+    {% empty %}
+      <li>No items yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<div class="sidebar-widget">
+  <h3>🌟 Top Viewed Actors</h3>
+  <ul>
+    {% for actor in top_actors %}
+      <li>
+        <a href="{{ actor.get_absolute_url }}">
+          {{ actor.name }} ({{ actor.views }} views)
+        </a>
+      </li>
+    {% empty %}
+      <li>No actors yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+
