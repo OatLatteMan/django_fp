@@ -108,6 +108,13 @@ class ActorDetail(DetailView):
     model = models.Actor
     # context_object_name = 'actor'
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        # Use F() to avoid race conditions
+        Actor.objects.filter(pk=obj.pk).update(views=F('views') + 1)
+        obj.refresh_from_db(fields=['views'])  # To reflect updated count immediately
+        return obj
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 

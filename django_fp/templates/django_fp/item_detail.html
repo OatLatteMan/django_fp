@@ -31,6 +31,7 @@
     </p>
     <p>Description: {{ item.desc }}</p>
     <p>Rating: {{item.average_rating}}</p>
+    <p>{{ item.get_type_display }} got visited {{ item.views }} times</p>
     <p>Reviews: {{ item.review.text }}</p>
 
     <h3>Reviews:</h3>

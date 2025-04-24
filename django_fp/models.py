@@ -108,6 +108,7 @@ class Actor(models.Model):
     born = models.DateField()
     image = models.ImageField(blank=True, null=True, upload_to='actor/')
     objects = ActorManager()
+    views = models.PositiveIntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse("django_fp:actor_detail", kwargs={"pk": self.pk})
