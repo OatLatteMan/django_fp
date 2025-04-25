@@ -1,0 +1,24 @@
+{% extends "django_fp/_base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
+{% endblock  %}
+
+{% block django_fp_base %}
+
+    <h2>Search results for "{{ query }}"</h2>
+
+    {% if results %}
+    <ul>
+        {% for actor in results %}
+        <li>
+            <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No matching actors found.</p>
+    {% endif %}
+
+{% endblock  %}
+

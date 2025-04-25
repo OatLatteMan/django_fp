@@ -50,7 +50,10 @@ urlpatterns = [
     path('actors/popular/', views.PopularActorListView.as_view(), name='popular_actors'),
 
     # http://127.0.0.1:[PORT]/django_fp/search
-    path('search/', views.search_items, name='search_items'),
+    path('search/', views.search_items, name='item_search'),
+
+    # http://127.0.0.1:[PORT]/django_fp/search/actors
+    path('search/actors', views.actor_search, name='actor_search'),
 
 ]
 

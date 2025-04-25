@@ -206,6 +206,7 @@ def search_items(request):
 
     if query:
         results = Item.objects.filter(
+            Q(name__icontains=query) |
             Q(title__icontains=query) |
             Q(desc__icontains=query) |
             Q(genre__icontains=query) |
@@ -213,6 +214,18 @@ def search_items(request):
         ).distinct()
 
     return render(request, 'django_fp/search_results.html', {
+        'query': query,
+        'results': results,
+    })
+
+def actor_search(request):
+    query = request.GET.get('q', '')
+    results = []
+
+    if query:
+        results = Actor.objects.filter(name__icontains=query)
+
+    return render(request, 'django_fp/actor_search.html', {
         'query': query,
         'results': results,
     })
