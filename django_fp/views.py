@@ -134,6 +134,14 @@ class ActorList(LoginRequiredMixin, ListView):
         else:
             return Actor.objects.none()
 
+class PopularActorListView(ListView):
+    model = Actor
+    context_object_name = 'actors'
+    template_name = 'django_fp/popular_actors.html'
+
+    def get_queryset(self):
+        return Actor.objects.popular()
+
 def django_fp_new_film(request):
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
