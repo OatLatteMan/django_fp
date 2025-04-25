@@ -49,5 +49,8 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/popular_actors
     path('actors/popular/', views.PopularActorListView.as_view(), name='popular_actors'),
 
+    # http://127.0.0.1:[PORT]/django_fp/search
+    path('search/', views.search_items, name='search_items'),
+
 ]
 

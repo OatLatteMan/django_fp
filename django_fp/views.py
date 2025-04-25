@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import F
+from django.db.models import F, Q
 
 
 def profile_view(request):
@@ -199,4 +199,19 @@ def django_fp_delete_actor(request, number):
                 return redirect('/django_fp/')
 
     return redirect('/django_fp/')
+
+def search_items(request):
+    query = request.GET.get('q')
+    results = []
+
+    if query:
+        results = Item.objects.filter(
+            Q(title__icontains=query) |
+            Q(desc__icontains=query)
+        )
+
+    return render(request, 'django_fp/search_results.html', {
+        'query': query,
+        'results': results,
+    })
 

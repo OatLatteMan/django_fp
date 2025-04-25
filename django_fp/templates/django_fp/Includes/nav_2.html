@@ -30,6 +30,38 @@
               border: 1px solid blue;
               color: black
             }
+            .navbar-search-form {
+              max-width: 300px;
+              margin-top: 20px;
+              display: flex;
+              align-items: left;
+              margin-right: auto; /* pushes it to the right */
+              gap: 0.5rem;
+            }
+            .navbar-search-form input[type="text"] {
+              padding: 6px 10px;
+              border: 1px solid #ccc;
+              border-radius: 20px;
+              font-size: 14px;
+              outline: none;
+              transition: border 0.3s ease;
+            }
+            .navbar-search-form input[type="text"]:focus {
+              border-color: #007bff; /* blue border on focus */
+            }
+            .navbar-search-form button {
+              max-width: 54px;
+              background-color: rgb(28, 33, 44);
+              border-radius: 20px;
+              border: none;
+              cursor: pointer;
+              font-size: 16px;
+              padding: 6px;
+              transition: color 0.3s ease;
+            }
+            .navbar-search-form button:hover {
+              color: #007bff;
+            }
           </style>
             <button id="theme-toggle" class="navbar-item theme-toggle-btn">🌙</button>
             <a class="navbar-item" href="{% url 'django_fp:index' %}">
@@ -47,7 +79,12 @@
               <button class="button is-info is-dark create">New Film</button></a>
             <a class="navbar-item" href="{% url 'django_fp:new_actor' %}">
               <button class="button is-info is-dark create">New Actor</button></a>
+            <form method="get" action="{% url 'django_fp:search_items' %}" class="navbar-search-form">
+              <input type="text" name="q" placeholder="Search..." required>
+              <button type="submit">🔍</button>
+            </form>
             {% endif %}
+
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" hidden='true'>
                 <span aria-hidden="true"></span>

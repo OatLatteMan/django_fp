@@ -1,0 +1,19 @@
+{% extends "django_fp/_base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
+{% endblock  %}
+
+{% block django_fp_base %}
+    <h2>Search Results for "{{ query }}"</h2>
+
+    {% if results %}
+    <ul>
+        {% for item in results %}
+        <li><a href="{{ item.get_absolute_url }}">{{ item.name }} --- {{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No matching items found.</p>
+    {% endif %}
+{% endblock  %}
