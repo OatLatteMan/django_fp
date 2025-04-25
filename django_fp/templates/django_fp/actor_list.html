@@ -11,6 +11,11 @@
     a:hover {
         color: green;
     }
+    .point{
+        padding: 4px;
+        border: 3px solid lightpink;
+        border-radius: 15px;
+    }
 </style>
 {% endblock  %}
 {% block django_fp_title %}Actors{% endblock  %}
@@ -20,7 +25,7 @@
 {% include 'django_fp/includes/nav.html' %}
 
 
-    <h1>Actors</h1>
+    <h1>Actors ➡️🖱️ <a href="{% url 'django_fp:popular_actors' %}" class='point'>Which of them are popular?</a></h1>
 
     <ul class="list">
         {% for actors in object_list %}

@@ -1,0 +1,20 @@
+{% extends 'django_fp/_base.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static "django_fp/pico.min.css" %}">
+{% endblock  %}
+
+{% block django_fp_base %}
+{% include "django_fp/includes/nav_2.html" %}
+
+<h1>Most Popular Actors</h1>
+  <ul>
+    {% for actor in actors %}
+      <li>
+        <a href="{{ actor.get_absolute_url }}">{{ actor.name }}</a>
+        – Appears in {{ actor.films.count }} films
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock  %}
