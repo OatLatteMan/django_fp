@@ -8,11 +8,13 @@
     <h2>Search Results for "{{ query }}"</h2>
 
     {% if results %}
-    <ul>
+
         {% for item in results %}
-        <li><a href="{{ item.get_absolute_url }}">{{ item.name }} --- {{ item.title }}</a></li>
+            <li><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></li>
+        {% empty %}
+            <li>No results found.</li>
         {% endfor %}
-    </ul>
+
     {% else %}
     <p>No matching items found.</p>
     {% endif %}
