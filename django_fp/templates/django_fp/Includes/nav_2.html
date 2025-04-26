@@ -47,19 +47,19 @@
               <button class="button is-info is-dark create">New Film</button></a>
             <a class="navbar-item" href="{% url 'django_fp:new_actor' %}">
               <button class="button is-info is-dark create">New Actor</button></a>
-            <div class="search-container">
+            <div class="search-forms">
               <!-- Item search form -->
               <form method="get" action="{% url 'django_fp:search_items' %}">
                 <input 
                     type="text" 
                     name="q" 
-                    list="item-titles" 
+                    list="item-names" 
                     placeholder="Search films or serials..."
                     value="{{ request.GET.q }}" 
                 >
-                <datalist id="item-titles">
-                    {% for title in all_titles %}
-                        <option value="{{ title }}"></option>
+                <datalist id="item-names">
+                    {% for title in all_names %}
+                        <option value="{{ name }}"></option>
                     {% endfor %}
                 </datalist>
                 <button type="submit">Search</button>
