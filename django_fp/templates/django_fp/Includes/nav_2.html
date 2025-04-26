@@ -49,35 +49,23 @@
               <button class="button is-info is-dark create">New Actor</button></a>
             <div class="search-forms">
               <!-- Item search form -->
-              <form method="get" action="{% url 'django_fp:search_items' %}">
-                <input 
-                    type="text" 
-                    name="q" 
-                    list="item-names" 
-                    placeholder="Search films or serials..."
-                    value="{{ request.GET.q }}" 
-                >
-                <datalist id="item-names">
-                    {% for title in all_names %}
-                        <option value="{{ name }}"></option>
-                    {% endfor %}
-                </datalist>
-                <button type="submit">Search</button>
-              </form>
+            <form action="{% url 'django_fp:search_items' %}" method="get" class="search-form">
+              <input list="item-suggestions" name="q" id="search-item" placeholder="Search Item..." />
+              <datalist id="item-suggestions">
+                {% for name in all_item_names %}
+                  <option value="{{ name }}">
+                {% endfor %}
+              </datalist>
+              <button type="submit">Search</button>
+            </form>
 
               <!-- Actor search form -->
               <form method="get" action="{% url 'django_fp:search_actors' %}">
-                <input 
-                    type="text" 
-                    name="q" 
-                    list="actor-names" 
-                    placeholder="Search actors..."
-                    value="{{ request.GET.q }}" 
-                >
-                <datalist id="actor-names">
-                    {% for name in all_actor_names %}
-                        <option value="{{ name }}"></option>
-                    {% endfor %}
+                <input list="actor-suggestions" name="q" id="search-actor" placeholder="Search Actor..." />
+                <datalist id="actor-suggestions">
+                  {% for name in all_actor_names %}
+                    <option value="{{ name }}">
+                  {% endfor %}
                 </datalist>
                 <button type="submit">Search</button>
               </form>
