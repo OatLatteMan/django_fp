@@ -213,9 +213,12 @@ def search_items(request):
             Q(actors__name__icontains=query)
         ).distinct()
 
+    all_names = Item.objects.values_list('name', flat=True)  # <- just this extra!
+
     return render(request, 'django_fp/search_results.html', {
         'query': query,
         'results': results,
+        'all_names': all_names,
     })
 
 def actor_search(request):
@@ -225,8 +228,11 @@ def actor_search(request):
     if query:
         results = Actor.objects.filter(name__icontains=query)
 
+    all_actor_names = Actor.objects.values_list('name', flat=True)
+
     return render(request, 'django_fp/actor_search.html', {
         'query': query,
         'results': results,
+        'all_actor_names': all_actor_names,
     })
 

@@ -47,19 +47,41 @@
               <button class="button is-info is-dark create">New Film</button></a>
             <a class="navbar-item" href="{% url 'django_fp:new_actor' %}">
               <button class="button is-info is-dark create">New Actor</button></a>
-            {% comment %} <div class="search-container">
+            <div class="search-container">
               <!-- Item search form -->
-              <form method="get" action="{% url 'django_fp:item_search' %}" class="search-form">
-                <input type="text" name="q" placeholder="Search items...">
+              <form method="get" action="{% url 'django_fp:search_items' %}">
+                <input 
+                    type="text" 
+                    name="q" 
+                    list="item-titles" 
+                    placeholder="Search films or serials..."
+                    value="{{ request.GET.q }}" 
+                >
+                <datalist id="item-titles">
+                    {% for title in all_titles %}
+                        <option value="{{ title }}"></option>
+                    {% endfor %}
+                </datalist>
                 <button type="submit">Search</button>
               </form>
 
               <!-- Actor search form -->
-              <form method="get" action="{% url 'django_fp:actor_search' %}" class="search-form">
-                <input type="text" name="q" placeholder="Search actors...">
+              <form method="get" action="{% url 'django_fp:search_actors' %}">
+                <input 
+                    type="text" 
+                    name="q" 
+                    list="actor-names" 
+                    placeholder="Search actors..."
+                    value="{{ request.GET.q }}" 
+                >
+                <datalist id="actor-names">
+                    {% for name in all_actor_names %}
+                        <option value="{{ name }}"></option>
+                    {% endfor %}
+                </datalist>
                 <button type="submit">Search</button>
               </form>
-            </div> {% endcomment %}
+            </div>
             {% endif %}
 
 
