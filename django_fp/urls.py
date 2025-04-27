@@ -55,5 +55,8 @@ urlpatterns = [
     # http://127.0.0.1:[PORT]/django_fp/search/actors
     path('search/actors', views.actor_search, name='search_actors'),
 
+    # http://127.0.0.1:[PORT]/django_fp/search/suggestions
+    path('search/suggestions/', views.search_suggestions, name='search_suggestions'),
+
 ]
 

@@ -1,26 +1,31 @@
-.suggestions-dropdown {
+#item-suggestions {
     position: absolute;
-    border: 1px solid #ddd;
-    background-color: white;
-    z-index: 999;
-    width: 100%;
-    max-height: 200px;
+    background-color: var(--pico-background-color, #fff); /* Use Pico background color if available */
+    border: 1px solid var(--pico-muted-border-color, #ccc);
+    border-radius: var(--pico-border-radius, 0.5rem);
+    margin-top: 0.25rem;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-height: 300px;
     overflow-y: auto;
-    display: none; /* Initially hidden */
+    width: 100%; /* Match the input width */
+    font-family: var(--pico-font-family, sans-serif);
+    font-size: var(--pico-font-size, 1rem);
 }
 
-.suggestions-dropdown div {
-    padding: 10px;
+#item-suggestions div {
+    padding: 0.5rem 1rem;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.suggestions-dropdown div:hover {
-    background-color: #f1f1f1;
+#item-suggestions div:hover {
+    background-color: var(--pico-muted-color, #f0f0f0);
 }
 
 .highlight {
     font-weight: bold;
-    color: #007bff;
+    color: var(--pico-primary, #3366ff);
 }
 
 .search-forms {

@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import F, Q
+from django.http import JsonResponse
 
 
 def profile_view(request):
@@ -229,4 +230,22 @@ def actor_search(request):
         'query': query,
         'results': results,
     })
+
+def search_suggestions(request):
+    query = request.GET.get('q', '').strip()
+    suggestions = []
+
+    if query:
+        # Get suggestions from Items
+        suggestions = list(Item.objects.filter(
+            Q(name__icontains=query) | 
+            Q(title__icontains=query)
+        ).values_list('name', flat=True))
+
+        # You can also add actors as suggestions
+        suggestions.extend(
+            list(Actor.objects.filter(name__icontains=query).values_list('name', flat=True))
+        )
+
+    return JsonResponse({'suggestions': suggestions})
 
