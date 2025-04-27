@@ -201,24 +201,6 @@ def django_fp_delete_actor(request, number):
 
     return redirect('/django_fp/')
 
-def search_items(request):
-    query = request.GET.get('q')
-    results = []
-
-    if query:
-        results = Item.objects.filter(
-            Q(name__icontains=query) |
-            Q(title__icontains=query) |
-            Q(desc__icontains=query) |
-            Q(genre__icontains=query) |
-            Q(actors__name__icontains=query)
-        ).distinct()
-
-    return render(request, 'django_fp/search_results.html', {
-        'query': query,
-        'results': results,
-    })
-
 def actor_search(request):
     query = request.GET.get('q', '')
     results = []
@@ -231,7 +213,7 @@ def actor_search(request):
         'results': results,
     })
 
-def search_suggestions(request):
+def search_item_suggestions(request):
     query = request.GET.get('q', '').strip()
     suggestions = []
 

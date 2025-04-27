@@ -1,5 +1,11 @@
+.suggestion_form {
+    position: relative;
+}
+
 #item-suggestions {
+    display: none;
     position: absolute;
+    top: 71px;
     background-color: var(--pico-background-color, #fff); /* Use Pico background color if available */
     border: 1px solid var(--pico-muted-border-color, #ccc);
     border-radius: var(--pico-border-radius, 0.5rem);

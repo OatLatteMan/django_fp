@@ -37,22 +37,22 @@
             document.addEventListener('DOMContentLoaded', function() {
                 const searchInput = document.getElementById('id_q');
                 const suggestionsDiv = document.getElementById('item-suggestions');
-            
+
                 searchInput.addEventListener('input', function() {
                     const query = searchInput.value.trim();
-            
+
                     if (query.length > 0) {
                         fetch(`${suggestionsUrl}?q=${query}`)
                             .then(response => response.json())
                             .then(data => {
                                 suggestionsDiv.innerHTML = '';
-            
+
                                 if (data.suggestions.length > 0) {
                                     suggestionsDiv.style.display = 'block';
                                 } else {
                                     suggestionsDiv.style.display = 'none';
                                 }
-            
+
                                 data.suggestions.forEach(suggestion => {
                                     const suggestionDiv = document.createElement('div');
                                     const highlightedSuggestion = highlightMatchingText(suggestion, query);
@@ -72,14 +72,12 @@
                         suggestionsDiv.style.display = 'none';
                     }
                 });
-            
                 function highlightMatchingText(suggestion, query) {
                     const regex = new RegExp(`(${query})`, 'gi');
                     return suggestion.replace(regex, '<span class="highlight">$1</span>');
                 }
             });
             </script>
-            
 
             <button id="theme-toggle" class="navbar-item theme-toggle-btn">🌙</button>
             <a class="navbar-item" href="{% url 'django_fp:index' %}">
@@ -99,8 +97,8 @@
               <button class="button is-info is-dark create">New Actor</button></a>
             <div class="search-forms">
               <!-- Item search form -->
-              <form method="get" action="{% url 'django_fp:search_suggestions' %}">
-                <input type="text" name="q" id="id_q" class="form-control">
+              <form method="get" action="{% url 'django_fp:search_suggestions' %}" class='suggestion_form'>
+                <input type="text" name="q" id="id_q" class="form-control" placeholder='Search film or serial...'>
                 <div id="item-suggestions" class="suggestions-dropdown">
                     <!-- Suggestions will be inserted here -->
                 </div>
