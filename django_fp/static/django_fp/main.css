@@ -1,3 +1,28 @@
+.suggestions-dropdown {
+    position: absolute;
+    border: 1px solid #ddd;
+    background-color: white;
+    z-index: 999;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none; /* Initially hidden */
+}
+
+.suggestions-dropdown div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.suggestions-dropdown div:hover {
+    background-color: #f1f1f1;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #007bff;
+}
+
 .search-forms {
     margin-top: 15px;
     display: flex;

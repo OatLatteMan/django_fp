@@ -30,7 +30,78 @@
               border: 1px solid blue;
               color: black
             }
+            .suggestions-dropdown {
+              position: absolute;
+              border: 1px solid #ddd;
+              background-color: white;
+              z-index: 999;
+              width: 100%;
+              max-height: 200px;
+              overflow-y: auto;
+              display: none; /* Initially hidden */
+          }
+          
+          .suggestions-dropdown div {
+              padding: 10px;
+              cursor: pointer;
+          }
+          
+          .suggestions-dropdown div:hover {
+              background-color: #f1f1f1;
+          }
+          
+          .highlight {
+              font-weight: bold;
+              color: #007bff;
+          }
           </style>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchInput = document.getElementById('id_q');
+                const suggestionsDiv = document.getElementById('item-suggestions');
+            
+                searchInput.addEventListener('input', function() {
+                    const query = searchInput.value.trim();
+            
+                    if (query.length > 0) {
+                        fetch(`/search/suggestions/?q=${query}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                suggestionsDiv.innerHTML = ''; // Clear previous suggestions
+            
+                                if (data.suggestions.length > 0) {
+                                    suggestionsDiv.style.display = 'block'; // Show the suggestions dropdown
+                                } else {
+                                    suggestionsDiv.style.display = 'none'; // Hide if no suggestions
+                                }
+            
+                                // Populate the dropdown with new suggestions
+                                data.suggestions.forEach(suggestion => {
+                                    const suggestionDiv = document.createElement('div');
+                                    const highlightedSuggestion = highlightMatchingText(suggestion, query);
+                                    suggestionDiv.innerHTML = highlightedSuggestion;
+                                    suggestionDiv.addEventListener('click', () => {
+                                        searchInput.value = suggestion;
+                                        suggestionsDiv.innerHTML = ''; // Clear after selection
+                                        suggestionsDiv.style.display = 'none';
+                                    });
+                                    suggestionsDiv.appendChild(suggestionDiv);
+                                });
+                            });
+                    } else {
+                        suggestionsDiv.style.display = 'none'; // Hide if query is empty
+                    }
+                });
+            
+                // Function to highlight matching text in suggestions
+                function highlightMatchingText(suggestion, query) {
+                    const regex = new RegExp(`(${query})`, 'gi');
+                    return suggestion.replace(regex, '<span class="highlight">$1</span>');
+                }
+            });
+            </script>
+
             <button id="theme-toggle" class="navbar-item theme-toggle-btn">🌙</button>
             <a class="navbar-item" href="{% url 'django_fp:index' %}">
               <button class="button is-info is-dark">Home</button></a>
@@ -49,15 +120,13 @@
               <button class="button is-info is-dark create">New Actor</button></a>
             <div class="search-forms">
               <!-- Item search form -->
-            <form action="{% url 'django_fp:search_items' %}" method="get" class="search-form">
-              <input list="item-suggestions" name="q" id="search-item" placeholder="Search Item..." />
-              <datalist id="item-suggestions">
-                {% for name in all_item_names %}
-                  <option value="{{ name }}">
-                {% endfor %}
-              </datalist>
-              <button type="submit">Search</button>
-            </form>
+              <form method="get" action="{% url 'django_fp:search_items' %}">
+                <input type="text" name="q" id="id_q" class="form-control">
+                <div id="item-suggestions" class="suggestions-dropdown">
+                    <!-- Suggestions will be inserted here -->
+                </div>
+                <button type="submit">Search</button>
+              </form>
 
               <!-- Actor search form -->
               <form method="get" action="{% url 'django_fp:search_actors' %}">
