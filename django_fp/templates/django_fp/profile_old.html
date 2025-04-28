@@ -16,24 +16,6 @@
 {% endif %}
 
 <p>{{ profile.bio }}</p>
-
-<section class="user-reviews">
-    <h2>Your Reviews</h2>
-
-    {% if user_reviews %}
-      <ul>
-        {% for review in user_reviews %}
-          <li>
-            <strong><a href="{% url 'item_detail' review.item.pk %}">{{ review.item.name }}</a></strong>:
-            "{{ review.text|truncatewords:20 }}"
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>You haven't written any reviews yet.</p>
-    {% endif %}
-</section>
-
 <a href="{% url 'django_fp:edit_profile' %}">Edit Profile</a>
 
 {% endblock  %}

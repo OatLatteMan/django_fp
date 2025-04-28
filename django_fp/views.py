@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django_fp import models
-from django_fp.models import Item, Actor
+from django_fp.models import Item, Actor, Review
 from django_fp.forms import ItemForm, ActorForm, ReviewForm, ProfileForm
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -14,8 +14,17 @@ from django.db.models import F, Q
 from django.http import JsonResponse
 
 
+def profile_view_old(request):
+    return render(request, 'django_fp/profile_old.html', {'profile': request.user.profile})
+
 def profile_view(request):
-    return render(request, 'django_fp/profile.html', {'profile': request.user.profile})
+    user = request.user
+    user_reviews = Review.objects.filter(user=user).select_related('item')
+
+    return render(request, 'django_fp/profile.html', {
+        'user': user,
+        'user_reviews': user_reviews,
+    })
 
 @login_required
 def profile_edit(request):
