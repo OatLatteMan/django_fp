@@ -1,0 +1,1 @@
+default_app_config = 'django_fp.apps.DjangoFpConfig'
